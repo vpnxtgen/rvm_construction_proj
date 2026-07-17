@@ -1,0 +1,6 @@
+{
+  "name": "RVM Constructions",
+  "description": "Premium turnkey home construction landing page representing RVM Constructions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

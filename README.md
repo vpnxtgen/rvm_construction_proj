@@ -1,20 +1,19 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# RVM Construction Project
 
-# Run and deploy your AI Studio app
+This project is a professional React + Vite website for RVM Constructions. It showcases the company’s construction services, founder profile, project highlights, and an interactive quote estimator, making it easy for visitors to learn about the business and connect for new projects.
 
-This contains everything you need to run your app locally.
+## What the Project Includes
 
-View your app in AI Studio: https://ai.studio/apps/25305676-69b1-4489-827f-84fe5d7d1e0c
+- Home page: introduces the RVM Construction brand and highlights the company’s expertise.
+- About section: presents the founder story and the company’s values.
+- Services section: explains the construction services offered.
+- Projects section: showcases completed work and major milestones.
+- Quote estimator: allows users to calculate an estimated construction cost based on project details.
+- Contact and support options: help visitors connect with the business easily.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
-
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   npm install
+2. Start the development server:
+   npm run dev
