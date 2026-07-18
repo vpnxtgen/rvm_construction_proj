@@ -192,42 +192,55 @@ export default function App() {
   // Timeline Milestone data
   const timelineData: TimelineItem[] = [
     {
-      years: '2016 - 2017',
+      years: '2023 – 2024',
       title: 'The Inception',
-      description: 'Started with a passionate team of four. Kicked off our journey by building 10 homes, including a game-changing green home project.',
+      description: 'Started with a passionate team of Two. Kicked off our journey by building homes.',
       details: [
-        'Founded with just 4 elite engineers and architects in a small workspace.',
+        'Founded with just 2 elite engineers and architects in a small workspace.',
         'Successfully delivered our first residential project 15 days ahead of schedule.',
-        'Engineered a prototype eco-friendly net-zero villa, proving early technical leadership.',
+        'Engineered a prototype eco-friendly net-zero home, proving early technical leadership.',
         'Established rigid foundation standards exceeding standard civil codes.'
       ],
-      projects: ['URVI Eco-Villas Phase 1', 'The Green-Home Prototype', 'Nandi Hills Private Manor'],
+      projects: ['Location : Sir M Visvesvaraya (MV) Layout', 'Type of Building : G+3 Luxury Residence', 'Owner Name : Dr Thyagaraja'],
       highlightColor: 'from-amber-500 to-yellow-600'
     },
     {
-      years: '2019 - 2020',
-      title: 'Regional Expansion',
-      description: 'Widened our reach into 8 vibrant cities across Karnataka and Tamil Nadu, completing over 100 successful projects.',
+      years: '2025 – 2026',
+      title: 'Strategic Growth & Diversification',
+      description: 'Strengthened our presence by successfully delivering residential projects and interior design solutions while adopting modern construction practices and expanding our portfolio with innovative, sustainable, and customer-focused solutions.',
       details: [
-        'Opened regional headquarters in Bengaluru and Chennai to manage escalating demands.',
-        'Scaled staff count from 12 to 65+ in-house experts.',
-        'Integrated multi-story commercial projects and luxury rowhouses into our portfolio.',
-        'Pioneered 3D concrete analysis on-site to reduce raw material wastage by 18%.'
+        'Successfully delivered a diverse portfolio of residential projects and interior design solutions with a strong focus on quality and timely execution.',
+        'Earned client trust through superior workmanship, transparent business practices, and reliable project delivery.',
+        'Expanded into premium residential home construction, including luxury homes, G+3 residences, and customized dream homes.',
+        'Enhanced project management capabilities by adopting modern construction techniques and innovative, cost-effective building solutions.',
+        'Strengthened our interior design division, offering end-to-end interior solutions tailored to modern living spaces.',
+        'Focused on sustainable construction practices and technology-driven execution to deliver lasting value and exceed customer expectations.'
       ],
-      projects: ['Zenith Commercial Complex', 'Chikkaballapur Landmark Estate', 'Whitefield Rowhouses'],
+      projects: ['Location : Sir M Visvesvayaraya (MV) Layout', 'Type of building : G+2 luxury Residence + Interior Design', 'Owner Name :  Mr Raja Gopal' ],
       highlightColor: 'from-blue-500 to-indigo-600'
     },
     {
-      years: '2023 - 2024',
+      years: '2026 - 2027',
       title: 'Platinum Standards',
-      description: 'Achieved the prestigious Platinum Certification from IGBC for project URVI and celebrated our 1000th booking.',
-      details: [
-        'Awarded IGBC Platinum rating for sustainable and environmental construction protocols.',
-        'Surpassed 1,000 satisfied family handovers across South India.',
-        'Secured international safety certifications for zero on-site critical incidents across 4 years.',
-        'Launched advanced client portal for live 24/7 drone monitoring of project sites.'
+      description: 'RVM Constructions introduced its Platinum Standards, establishing a new benchmark for quality, craftsmanship, and customer satisfaction. This initiative reflects the company commitment to delivering projects that meet the highest standards of construction, interior design, safety, sustainability, and timely execution',
+     details: [
+        'Established Platinum Standards to ensure exceptional quality, precision, and consistency across every project.',
+        'Committed to using premium construction materials and delivering superior craftsmanship with meticulous attention to detail.',
+        'Implemented transparent project management practices to provide clients with complete visibility throughout the construction journey.',
+        'Integrated modern construction techniques, innovative interior design solutions, and sustainable building practices.',
+        'Successfully commenced a premium G+3 residential home project at Kempegowda Layout, Bengaluru, built to RVM Platinum Standards.',
+        'Launched a high-end interior design project, delivering customized turnkey interiors with a focus on functionality, elegance, and premium finishes.',
+        'Focused on safety, quality assurance, and timely project execution while maintaining the highest industry standards.',
+        'Delivered a seamless end-to-end experience, from planning and design to construction and project handover.'
       ],
-      projects: ['URVI Elite Towers', 'RMV Luxury Heights', 'Koramangala Tech Vista'],
+      projects: [
+      'Location: Kempegowda Layout, Bengaluru',
+      'Type of Building: G+3 Luxury Residence + Interior Design',
+      'Owner Name: [Owner Name]',
+      'Location: JP Nagar, Bengaluru',
+      'Type of Building: Interior Design for G+3 Residential Building',
+      'Owner Name: Mr. [Owner Name]'
+    ],
       highlightColor: 'from-emerald-500 to-teal-600'
     }
   ];
@@ -860,7 +873,7 @@ export default function App() {
               { num: '1', label: 'SITE ENGINEERS', desc: 'Precision on-site execution managers' },
               { num: '11', label: 'COORDINATORS', desc: 'Liaison & compliance clearance officers' },
               { num: '1', label: 'DESIGNERS', desc: 'Interior ergonomics & custom spaces' },
-              { num: '20+', label: 'SKILLED LABOUR', desc: 'Masonry, metallurgy, carpentry craftsmen' }
+              { num: '40+', label: 'SKILLED LABOUR', desc: 'Masonry, metallurgy, carpentry craftsmen' }
             ].map((stat, idx) => (
               <div
                 key={idx}
