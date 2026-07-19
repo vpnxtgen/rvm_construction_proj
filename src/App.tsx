@@ -104,6 +104,13 @@ export default function App() {
     }
   };
 
+  const handleScrollToProjects = () => {
+    const element = document.querySelector("#projects-section");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleScrollToRoadmap = () => {
     const element = document.querySelector("#roadmap-section");
     if (element) {
@@ -138,7 +145,7 @@ export default function App() {
         onContactClick={handleScrollToContact}
         onPackagesClick={handleScrollToPackages}
         onRoadmapClick={handleScrollToRoadmap}
-        onProjectsClick={handleScrollToRoadmap}
+        onProjectsClick={handleScrollToProjects}
         theme={theme}
         onToggleTheme={toggleTheme}
       />
@@ -152,8 +159,7 @@ export default function App() {
       {/* 3. About Section with overlay experience badge */}
       <About onLearnMoreClick={() => setIsPortfolioOpen(true)} />
 
-      {/* 3b. About Founder Section */}
-      <Founder />
+      
 
       {/* 3c. Services Section */}
       <Services />
