@@ -68,7 +68,7 @@ export const PACKAGES: Package[] = [
   {
     id: "essential",
     name: "Essential",
-    price: "₹1,680",
+    price: "₹2,100",
     unit: "/ sqft",
     features: [
       "Standard design & specs",
@@ -84,7 +84,7 @@ export const PACKAGES: Package[] = [
   {
     id: "premium",
     name: "Premium",
-    price: "₹1,899",
+    price: "₹2,400",
     unit: "/ sqft",
     isPopular: true,
     features: [
@@ -102,7 +102,7 @@ export const PACKAGES: Package[] = [
   {
     id: "luxury",
     name: "Luxury",
-    price: "₹2,370",
+    price: "₹2,800",
     unit: "/ sqft",
     features: [
       "Architectural masterpieces",
@@ -116,7 +116,7 @@ export const PACKAGES: Package[] = [
     bgColor: "bg-[#111A3E] border border-rvm-card-border",
     btnStyle: "bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C]",
   },
-  {
+  /*{
     id: "green-home",
     name: "Green Home",
     price: "₹1,900",
@@ -132,7 +132,7 @@ export const PACKAGES: Package[] = [
     textColor: "text-[#0B122C]",
     bgColor: "bg-white border border-gray-200",
     btnStyle: "bg-[#0B122C] hover:bg-slate-800 text-white",
-  },
+  }*/
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
