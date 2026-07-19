@@ -82,9 +82,9 @@ export default function Footer() {
               <div>
                 <p className="font-semibold text-white mb-1">RVM Constructions (H.O)</p>
                 <p className="text-gray-400">
-                  #45, 1st Main Road, Sector 6, <br />
-                  HSR Layout, Bengaluru, <br />
-                  Karnataka - 560102
+                  #1216, 2nd cross, 3rd Main <br />
+                  3rd Block,SMV layout Bengaluru, <br />
+                  Karnataka - 560060
                 </p>
               </div>
             </div>
