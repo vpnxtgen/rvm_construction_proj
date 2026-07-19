@@ -20,7 +20,7 @@ import step2  from "../assets/images/image2.png";
 import step3  from "../assets/images/image3.png";
 import step4  from "../assets/images/image4.png";
 import step5  from "../assets/images/image5.png";
-import step6  from "../assets/images/image6.png";
+import step6  from "../assets/images/Image6.png";
 
 interface RoadmapProps {
   onSuccessSubmit: (details: { name: string; phone: string; location: string }) => void;
