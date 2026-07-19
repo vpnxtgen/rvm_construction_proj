@@ -116,7 +116,7 @@ export const PACKAGES: Package[] = [
     bgColor: "bg-[#111A3E] border border-rvm-card-border",
     btnStyle: "bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C]",
   },
-  {
+  /*{
     id: "green-home",
     name: "Green Home",
     price: "₹1,900",
@@ -132,7 +132,7 @@ export const PACKAGES: Package[] = [
     textColor: "text-[#0B122C]",
     bgColor: "bg-white border border-gray-200",
     btnStyle: "bg-[#0B122C] hover:bg-slate-800 text-white",
-  },
+  }*/
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
