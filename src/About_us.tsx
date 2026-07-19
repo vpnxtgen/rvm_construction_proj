@@ -32,7 +32,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-import companyLogo from "./assets/images/Vishwas_Image.png";
+import companyLogo from "./assets/images/Vishwas_Image.jpeg";
 
 // Interfaces for State & Data
 interface TimelineItem {
