@@ -16,7 +16,7 @@ import { Package, RoadmapStep, PACKAGES } from "./data";
 import { MessageSquare, PhoneCall, CheckCircle } from "lucide-react";
 
 const message = encodeURIComponent(
-          "Thank you for reaching out to RVM Constructions!\n\nHow can we help you today?"
+          "Hi! I was browsing your website and wanted some information. Can you help me?"
         );
 
 export default function App() {
