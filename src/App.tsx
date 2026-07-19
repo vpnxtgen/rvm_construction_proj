@@ -15,6 +15,10 @@ import { SuccessModal, StepModal, BookingModal, BrochureModal, PortfolioModal} f
 import { Package, RoadmapStep, PACKAGES } from "./data";
 import { MessageSquare, PhoneCall, CheckCircle } from "lucide-react";
 
+const message = encodeURIComponent(
+          "Thank you for reaching out to RVM Constructions!\n\nHow can we help you today?"
+        );
+
 export default function App() {
   // Theme state
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -260,14 +264,22 @@ export default function App() {
           </div>
         )}
 
+        
+
+        
+
         {/* WhatsApp Chat Trigger (Green) */}
         <button
             id="whatsapp-floating-btn"
             onClick={() =>
               window.open(
-                "https://api.whatsapp.com/send/?phone=918296777056&text=Hi&type=phone_number&app_absent=0",
+                `https://wa.me/918296777056?text=${message}`,
                 "_blank"
               )
+              /*window.open(
+                "https://api.whatsapp.com/send/?phone=918296777056&text=Hi&type=phone_number&app_absent=0",
+                "_blank"
+              )*/
             }
             className="bg-[#25D366] hover:bg-[#20ba59] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 relative group cursor-pointer"
             aria-label="WhatsApp Consultation"
