@@ -18,7 +18,7 @@ import {
 import step1  from "../assets/images/image1.png";
 import step2  from "../assets/images/image2.png";
 import step3  from "../assets/images/image3.png";
-import step4  from "../assets/images/image4.png";
+import step4  from "../assets/images/Image4.png";
 import step5  from "../assets/images/image5.png";
 import step6  from "../assets/images/Image6.png";
 
