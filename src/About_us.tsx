@@ -32,7 +32,8 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-import companyLogo from "./assets/images/Vishwas_Image.jpeg";
+import companyLogo from "./assets/images/Rvm_Main_logo.png";
+import founderImage from "./assets/images/Vishwas_Image.jpeg";
 
 // Interfaces for State & Data
 interface TimelineItem {
@@ -558,7 +559,7 @@ export default function App() {
           <div className="lg:col-span-4 flex justify-center">
             <div className="relative w-full max-w-sm rounded-lg overflow-hidden shadow-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent group border border-rvm-gold/20">
               <img
-                src="/src/assets/images/Vishwas_Image.jpeg"
+                src={founderImage}
                 alt="Vishwas Thyagaraja - Founder"
                 className="w-full h-auto aspect-[4/5] object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 referrerPolicy="no-referrer"
