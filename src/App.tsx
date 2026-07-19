@@ -262,11 +262,16 @@ export default function App() {
 
         {/* WhatsApp Chat Trigger (Green) */}
         <button
-          id="whatsapp-floating-btn"
-          onClick={() => setShowQuickHelp(!showQuickHelp)}
-          className="bg-[#25D366] hover:bg-[#20ba59] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 relative group cursor-pointer"
-          aria-label="WhatsApp Consultation"
-        >
+            id="whatsapp-floating-btn"
+            onClick={() =>
+              window.open(
+                "https://api.whatsapp.com/send/?phone=918296777056&text=Hi&type=phone_number&app_absent=0",
+                "_blank"
+              )
+            }
+            className="bg-[#25D366] hover:bg-[#20ba59] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 relative group cursor-pointer"
+            aria-label="WhatsApp Consultation"
+          >
           <MessageSquare className="h-6 w-6" />
           <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0B122C] text-white text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 uppercase shadow-md pointer-events-none">
             WhatsApp Live Chat
@@ -276,7 +281,7 @@ export default function App() {
         {/* Phone Call Trigger (Yellow) */}
         <a
           id="call-floating-btn"
-          href="tel:+919876543210"
+          href="tel:+918296777056"
           className="bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] p-3.5 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 relative group"
           aria-label="Call RVM Team"
         >
