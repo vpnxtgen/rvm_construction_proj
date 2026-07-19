@@ -1332,7 +1332,7 @@ export default function App() {
                               required
                               value={calcPhone}
                               onChange={(e) => setCalcPhone(e.target.value)}
-                              placeholder="e.g. +91 98765 43210"
+                              placeholder="e.g. +91 82967 77056"
                               className="w-full border border-slate-200 rounded p-2.5 text-sm focus:border-amber-500 focus:outline-none"
                             />
                           </div>

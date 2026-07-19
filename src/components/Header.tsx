@@ -132,7 +132,7 @@ export default function Header({
               className="text-white hover:text-rvm-gold flex items-center gap-1.5 text-sm font-medium transition-colors"
             >
               <Phone className="h-4 w-4 text-rvm-gold" />
-              <span>+91 98765 43210</span>
+              <span>+91 82967 77056</span>
             </a>
             <button
               id="cta-start-building"
@@ -241,7 +241,7 @@ export default function Header({
               className="text-white hover:text-rvm-gold flex items-center gap-2 text-sm font-medium py-1"
             >
               <Phone className="h-4 w-4 text-rvm-gold" />
-              <span>+91 98765 43210</span>
+              <span>+91 82967 77056</span>
             </a>
             <button
               onClick={() => {
