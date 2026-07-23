@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import { useNavigate } from 'react-router-dom'; // Only import what you actually use
+import  rvm_construction  from "../assets/images/rvm_construction_site_1783953351313.jpg";
 
 interface AboutProps {
   onLearnMoreClick?: () => void; // Made optional in case you only want router navigation
@@ -28,7 +29,7 @@ export default function About({ onLearnMoreClick }: AboutProps) {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-sm overflow-hidden shadow-2xl border border-gray-100 dark:border-white/5">
               <img
-                src="/src/assets/images/rvm_construction_site_1783953351313.jpg"
+                src= {rvm_construction}
                 alt="Construction site"
                 className="w-full h-auto object-cover aspect-[4/3] sm:aspect-square lg:aspect-[4/5]"
                 referrerPolicy="no-referrer"
