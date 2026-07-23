@@ -32,7 +32,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-import companyLogo from "./assets/images/rvm_main_logo_v2.png";
+import companyLogo from "./assets/images/RVM_Construction_main_logo_2.png";
 import founderImage from "./assets/images/Vishwas_Image.jpeg";
 
 // Interfaces for State & Data
@@ -405,7 +405,7 @@ export default function App() {
           >
             <header>
               {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo" width="200" height="100" />
+              <img src={companyLogo} alt="Company Logo" width="150" height="100" />
             </header>
           </div>
           
