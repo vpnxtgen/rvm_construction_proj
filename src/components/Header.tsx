@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Building2, Sun, Moon } from "lucide-react";
-import companyLogo  from "../assets/images/RVM_Construction_main_logo.png";
+//import companyLogo  from "../assets/images/RVM_Construction_main_logo.png";
+import companyLogo  from "../assets/images/rvm_main_logo_v2.png";
 
 interface HeaderProps {
   onStartBuildingClick: () => void;
@@ -61,19 +62,20 @@ export default function Header({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div
+          
+
+          {/* Desktop Navigation */}
+          <nav id="desktop-nav" className="hidden md:flex items-center space-x-8">
+            <div
             id="logo"
             className="flex items-center space-x-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <header>
               {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo" width="200" height="100" />
+              <img src={companyLogo} alt="Company Logo"  style={{ marginBottom: "29px", width: "200px", height: "100px"}}/>
             </header>
           </div>
-
-          {/* Desktop Navigation */}
-          <nav id="desktop-nav" className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-white hover:text-rvm-gold text-sm font-medium tracking-wide transition-colors"
@@ -141,6 +143,14 @@ export default function Header({
             >
               START BUILDING
             </button>
+          </div>
+
+          {/*Logo View*/}
+          <div id="logo" className="md:hidden flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <header>
+              {/* 2. Use the variable inside curly braces */}
+              <img src={companyLogo} alt="Company Logo"  style={{ marginBottom: "10px", width: "100px", height: "60px"}}/>
+            </header>
           </div>
 
           {/* Mobile Menu Button */}
