@@ -32,7 +32,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-import companyLogo from "./assets/images/Rvm_Main_logo.png";
+import companyLogo from "./assets/images/rvm_main_logo_v2.png";
 import founderImage from "./assets/images/Vishwas_Image.jpeg";
 
 // Interfaces for State & Data
