@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Building2, Sun, Moon } from "lucide-react";
-import companyLogo  from "../assets/images/RVM_Construction_main_logo.png";
+//import companyLogo  from "../assets/images/RVM_Construction_main_logo.png";
+import companyLogo  from "../assets/images/rvm_main_logo_v2.png";
 
 interface HeaderProps {
   onStartBuildingClick: () => void;
@@ -68,7 +69,7 @@ export default function Header({
           >
             <header>
               {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo" width="200" height="100" />
+              <img src={companyLogo} alt="Company Logo"  style={{ marginBottom: "29px", width: "200px", height: "100px"}}/>
             </header>
           </div>
 

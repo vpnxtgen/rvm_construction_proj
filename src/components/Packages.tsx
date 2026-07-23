@@ -22,7 +22,7 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
             </h2>
           </div>
           
-          <div>
+          {/*<div>
             <button
               onClick={onDownloadBrochure}
               className="inline-flex items-center space-x-2 border border-rvm-gold/40 hover:border-rvm-gold hover:bg-rvm-gold/5 text-rvm-gold text-xs font-semibold tracking-wider px-6 py-3.5 rounded-sm transition-all duration-300 uppercase"
@@ -30,7 +30,7 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
               <Download className="h-4 w-4" />
               <span>DOWNLOAD BROCHURE</span>
             </button>
-          </div>
+          </div>*/}
         </div>
 
         {/* Packages Grid */}
