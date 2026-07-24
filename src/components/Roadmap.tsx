@@ -224,6 +224,9 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
 
   return (
     <section id="roadmap-section" className="py-20 bg-white dark:bg-[#0B122C] relative overflow-hidden transition-colors duration-300">
+      <br/>
+      <br/>
+      <br/>
       {/* Decorative radial gradients matching raw HTML style */}
       <div className="absolute -top-[120px] -right-[120px] w-[400px] height-[400px] bg-gradient-radial from-emerald-500/5 to-transparent rounded-full pointer-events-none"></div>
       <div className="absolute -bottom-[80px] -left-[80px] w-[300px] height-[300px] bg-gradient-radial from-[#0a2463]/5 to-transparent rounded-full pointer-events-none"></div>
@@ -234,7 +237,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-3">
             <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
-            <span>WORKING STEPS</span>
+            <span>How It Works</span>
             <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
           </div>
           <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#0a1f44] dark:text-white tracking-tight leading-tight uppercase">

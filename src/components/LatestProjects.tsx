@@ -55,6 +55,9 @@ export default function LatestProjects() {
 
   return (
     <section id="projects-section" className="py-20 bg-white dark:bg-[#0B122C] transition-colors duration-300">
+      <br/>
+      <br/>
+      <br/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}

@@ -8,7 +8,11 @@ interface PackagesProps {
 
 export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesProps) {
   return (
+    
     <section id="packages-section" className="py-20 bg-[#0B122C] text-white">
+      <br/>
+      <br/>
+      <br/>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
