@@ -34,6 +34,8 @@ import {
 
 import companyLogo from "./assets/images/RVM_Construction_main_logo_2.png";
 import founderImage from "./assets/images/Vishwas_Image.jpeg";
+import { BookingModal} from "./components/InteractiveModals";
+import { Package } from "./data";
 
 // Interfaces for State & Data
 interface TimelineItem {
@@ -115,6 +117,12 @@ export default function App() {
   const statsRef = useRef<HTMLDivElement>(null);
   const partnersRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  // Refs for the  booking page
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
+  const [selectedPkg, setSelectedPkg] = useState<Package | null>(null);
+  const [successDetails, setSuccessDetails] = useState<{ name: string; phone: string; location: string } | null>(null);
 
   // Section observer for high-fidelity active underline in Header
   useEffect(() => {
@@ -362,12 +370,18 @@ export default function App() {
     }
   };
 
+  
+
   // Handle quote modal open
-  const openQuoteModal = () => {
-    setCalcStep(1);
-    setCalcSubmitted(false);
-    setQuoteModalOpen(true);
-  };
+const openQuoteModal = () => {
+  setCalcStep(1);
+  setCalcSubmitted(false); // or a real package if you have one selected
+  setSelectedPkg({
+    name: 'Elite Premium',
+    price: '₹2,430',
+  } as Package);
+  setIsBookingOpen(true);
+};
 
   // Submit quote calculator
   const handleCalcSubmit = (e: React.FormEvent) => {
@@ -392,6 +406,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-amber-100 selection:text-amber-900 overflow-x-hidden">
+    {/* Booking Model Call */}
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        pkg={selectedPkg}
+        onSuccessSubmit={(details) => {
+          setIsBookingOpen(false);
+          setSuccessDetails(details);
+        }}
+      />
        
       {/* HEADER / NAVIGATION */}
       <header id="app-header" className="sticky top-0 z-40 w-full bg-white border-b border-slate-100 shadow-sm backdrop-blur-md bg-white/90 transition-all duration-300">
@@ -527,7 +551,7 @@ export default function App() {
       </section>
 
       {/* PORTAL NOTICE FOR DYNAMIC DEMO */}
-      <div className="bg-amber-50 border-y border-amber-200 py-3 text-center px-4">
+      {/*<div className="bg-amber-50 border-y border-amber-200 py-3 text-center px-4">
         <p className="text-sm text-amber-800 font-medium flex items-center justify-center flex-wrap gap-2">
           <Info className="w-4 h-4 flex-shrink-0" />
           <span>Interactive App Enabled: Use the top menu links to scroll or open the live quote generator form!</span>
@@ -538,7 +562,7 @@ export default function App() {
             Try Calculator <Calculator className="w-3.5 h-3.5" />
           </button>
         </p>
-      </div>
+      </div>*/}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
