@@ -9,11 +9,8 @@ interface PackagesProps {
 export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesProps) {
   return (
     
-    <section id="packages-section" className="py-20 bg-[#0B122C] text-white">
-      <br/>
-      <br/>
-      <br/>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="packages-section" className="py-20 xl:py-28 bg-[#0B122C] text-white">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-6">
@@ -21,7 +18,7 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
             <p className="font-sans font-semibold text-xs tracking-widest text-rvm-gold uppercase">
               OUR PACKAGES
             </p>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight leading-tight">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-white tracking-tight leading-tight">
               Construction Excellence for Every Ambition
             </h2>
           </div>
@@ -38,14 +35,14 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
         </div>
 
         {/* Packages Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-10 items-stretch pt-4">
           {PACKAGES.map((pkg) => {
             const isGreen = pkg.id === "green-home";
             
             return (
               <div
                 key={pkg.id}
-                className={`${pkg.bgColor} flex flex-col justify-between p-8 rounded-sm transition-all duration-300 ${
+                className={`${pkg.bgColor} relative flex flex-col justify-between p-8 xl:p-10 rounded-sm transition-all duration-300 ${
                   pkg.isPopular ? "hover:scale-105" : "hover:scale-[1.02]"
                 }`}
               >
@@ -58,13 +55,13 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
 
                 {/* Package Head */}
                 <div>
-                  <h3 className={`font-display font-bold text-2xl mb-4 ${isGreen ? "text-[#0B122C]" : "text-white"}`}>
+                  <h3 className={`font-display font-bold text-2xl xl:text-3xl mb-4 ${isGreen ? "text-[#0B122C]" : "text-white"}`}>
                     {pkg.name}
                   </h3>
                   
                   {/* Price */}
                   <div className="flex items-baseline mb-6 border-b border-white/10 pb-4">
-                    <span className={`font-display font-extrabold text-3xl ${isGreen ? "text-[#0B122C]" : "text-rvm-gold"}`}>
+                    <span className={`font-display font-extrabold text-3xl xl:text-4xl ${isGreen ? "text-[#0B122C]" : "text-rvm-gold"}`}>
                       {pkg.price}
                     </span>
                     <span className={`text-xs ml-1 font-medium ${isGreen ? "text-gray-500" : "text-gray-400"}`}>
@@ -75,7 +72,7 @@ export default function Packages({ onChoosePlan, onDownloadBrochure }: PackagesP
                   {/* Features List */}
                   <ul className="space-y-3.5 mb-8">
                     {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-3 text-xs leading-normal">
+                      <li key={idx} className="flex items-start space-x-3 text-xs xl:text-sm leading-normal">
                         <Check className="h-4 w-4 text-rvm-gold shrink-0 mt-0.5" />
                         <span className={isGreen ? "text-gray-600" : "text-gray-300"}>
                           {feature}

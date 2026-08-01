@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import SeoHead from "./components/Seohead";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -149,6 +150,8 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
       />
+
+      <SeoHead/>
 
       {/* 2. Hero Section with dynamic Consultation Form */}
       <Hero

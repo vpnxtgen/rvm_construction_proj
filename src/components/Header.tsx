@@ -59,23 +59,20 @@ export default function Header({
           : "bg-gradient-to-b from-[#0B122C]/80 to-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+        <div className="flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-6">
 
-          {/* Desktop Navigation */}
-          <nav id="desktop-nav" className="hidden md:flex items-center space-x-8">
-            <div
+          {/* Logo (left) */}
+          <div
             id="logo"
-            className="flex items-center space-x-2 cursor-pointer"
+            className="hidden md:flex items-center space-x-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <header>
-              {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo"  style={{ marginBottom: "29px", width: "200px", height: "100px"}}/>
-            </header>
+            <img src={companyLogo} alt="Company Logo" style={{ marginBottom: "29px", width: "200px", height: "100px" }} />
           </div>
+
+          {/* Desktop Navigation (center) */}
+          <nav id="desktop-nav" className="hidden md:flex items-center justify-center space-x-8">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-white hover:text-rvm-gold text-sm font-medium tracking-wide transition-colors"
@@ -114,10 +111,10 @@ export default function Header({
             </button>
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Desktop CTA (right) */}
+          <div className="hidden md:flex items-center space-x-4 justify-self-end">
             {/* Theme Toggle Button */}
-            <button
+            {/*<button
               onClick={onToggleTheme}
               className="text-white hover:text-rvm-gold p-2 transition-colors rounded-full focus:outline-none"
               aria-label="Toggle Theme"
@@ -127,7 +124,7 @@ export default function Header({
               ) : (
                 <Moon className="h-5 w-5 text-white hover:text-rvm-gold" />
               )}
-            </button>
+            </button>*/}
 
             <a
               href="tel:+919876543210"

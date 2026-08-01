@@ -3,11 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Construction Page</title>
+
+    <!-- Fallback SEO tags: shown to crawlers/bots that don't run JS.
+         React Helmet will override these once the app loads. -->
+    <title>RVM Constructions | Premium Home & Villa Builders</title>
+    <meta
+      name="description"
+      content="RVM Constructions delivers premium home, villa & commercial construction with architectural integrity, transparent pricing, and on-time delivery. Get a free consultation today."
+    />
+    <meta
+      name="keywords"
+      content="construction company, home construction contractors, residential construction company, commercial construction company, custom home builders, villa construction company, best construction company near me, turnkey construction services, building renovation and remodeling, structural construction services, apartment construction contractors, premium home builders"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph fallback (WhatsApp, Facebook, LinkedIn link previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="RVM Constructions | Premium Home & Villa Builders" />
+    <meta
+      property="og:description"
+      content="Architectural integrity, premium craftsmanship, and on-time delivery. RVM Constructions turns your vision into a structural reality."
+    />
+
+    <!-- Twitter Card fallback -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="RVM Constructions | Premium Home & Villa Builders" />
+
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+    <script type="module" src="/@vite/client"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

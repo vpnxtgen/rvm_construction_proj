@@ -122,8 +122,12 @@ export default function Brands() {
         setItemsPerView(2);
       } else if (window.innerWidth < 1024) {
         setItemsPerView(3);
-      } else {
+      } else if (window.innerWidth < 1280) {
+        setItemsPerView(4);
+      } else if (window.innerWidth < 1600) {
         setItemsPerView(5);
+      } else {
+        setItemsPerView(6);
       }
     };
 
@@ -133,7 +137,7 @@ export default function Brands() {
   }, []);
 
   const totalSlides = brands.length;
-  const maxIndex = totalSlides - itemsPerView;
+  const maxIndex = Math.max(0, totalSlides - itemsPerView);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
@@ -157,8 +161,8 @@ export default function Brands() {
   }, []);
 
   return (
-    <section id="brands-section" className="py-20 bg-[#FAF8F5] dark:bg-[#111A3E] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="brands-section" className="py-20 xl:py-28 bg-[#FAF8F5] dark:bg-[#111A3E] transition-colors duration-300">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 text-center">
         
         {/* Carets and Section Heading */}
         <div className="flex flex-col items-center mb-6">
@@ -175,7 +179,7 @@ export default function Brands() {
         </div>
 
         {/* Brand Carousel Wrapper */}
-        <div className="relative mt-12 max-w-6xl mx-auto px-8 group">
+        <div className="relative mt-12 max-w-[1600px] mx-auto px-8 group">
           
           {/* Outer Slider container */}
           <div className="overflow-hidden py-4">
@@ -187,7 +191,7 @@ export default function Brands() {
                 <div 
                   key={index} 
                   style={{ width: `calc(${100 / itemsPerView}% - ${(6 * (itemsPerView - 1)) / itemsPerView}px)` }}
-                  className="shrink-0 flex flex-col bg-white dark:bg-[#0B122C] border border-gray-100 dark:border-white/5 py-8 px-5 rounded-lg items-center text-center justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-64"
+                  className="shrink-0 flex flex-col bg-white dark:bg-[#0B122C] border border-gray-100 dark:border-white/5 py-8 px-5 rounded-lg items-center text-center justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-64 xl:h-72"
                 >
                   {/* Brand Logo Container */}
                   <div className="p-3 bg-gray-50 dark:bg-white/5 rounded-full mb-3 flex items-center justify-center transition-transform duration-300 hover:scale-110">
@@ -199,10 +203,10 @@ export default function Brands() {
                     <span className="text-[9px] font-bold text-rvm-gold bg-rvm-gold/10 px-2 py-0.5 rounded-full tracking-wider uppercase">
                       {brand.badge}
                     </span>
-                    <h4 className="font-display font-bold text-base text-[#0B122C] dark:text-white mt-2 tracking-tight">
+                    <h4 className="font-display font-bold text-base xl:text-lg text-[#0B122C] dark:text-white mt-2 tracking-tight">
                       {brand.name}
                     </h4>
-                    <p className="text-[10px] text-gray-400 mt-1 leading-normal">
+                    <p className="text-[10px] xl:text-xs text-gray-400 mt-1 leading-normal">
                       {brand.tagline}
                     </p>
                   </div>
