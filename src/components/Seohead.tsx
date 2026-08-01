@@ -17,9 +17,62 @@ export default function SEOHead() {
         content="RVM Constructions delivers premium home, villa & commercial construction with architectural integrity, transparent pricing, and on-time delivery. Get a free consultation today."
       />
       <meta
-        name="keywords"
-        content="construction company, home construction contractors, residential construction company, commercial construction company, custom home builders, villa construction company, best construction company near me, turnkey construction services, building renovation and remodeling, structural construction services, apartment construction contractors, premium home builders"
-      />
+      name="keywords"
+      content="
+      RVM Constructions,
+      home construction,
+      house construction,
+      build a home,
+      custom home builder,
+      new home construction,
+      residential construction,
+      home builders,
+      house builders,
+      home builders near me,
+      villa construction,
+      villa builders,
+      turnkey construction,
+      turnkey construction services,
+      construction company,
+      construction company in Bangalore,
+      residential construction company,
+      commercial construction company,
+      building contractors,
+      structural construction services,
+      apartment construction contractors,
+      premium home builders,
+      architectural design,
+      home renovation,
+      building renovation,
+      remodeling services,
+      house construction cost,
+      cost to build a house,
+      modern house construction,
+      dream home construction,
+      custom villa construction,
+      luxury home builders,
+      independent house construction,
+      residential builders,
+      construction materials,
+      building materials,
+      AAC blocks,
+      red bricks,
+      fly ash bricks,
+      concrete blocks,
+      hollow blocks,
+      cement bricks,
+      brick suppliers,
+      premium bricks,
+      foundation construction,
+      home architecture,
+      civil contractors,
+      building construction,
+      project management,
+      quality construction,
+      transparent pricing,
+      on-time project delivery
+      "
+    />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href="https://www.rvmconstructions.com/" />
 
