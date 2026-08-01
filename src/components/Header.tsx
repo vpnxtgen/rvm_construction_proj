@@ -55,11 +55,11 @@ export default function Header({
       id="header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#0B122C]/95 backdrop-blur-md shadow-lg py-3 border-b border-white/5"
-          : "bg-gradient-to-b from-[#0B122C]/80 to-transparent py-5"
+          ? "bg-[#0B122C]/95 backdrop-blur-md shadow-lg py-2 border-b border-white/5"
+          : "bg-gradient-to-b from-[#0B122C]/80 to-transparent py-3"
       }`}
     >
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="flex items-center justify-between md:grid md:grid-cols-[auto_1fr_auto] md:items-center md:gap-6">
 
           {/* Logo (left) */}
@@ -68,11 +68,11 @@ export default function Header({
             className="hidden md:flex items-center space-x-2 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            <img src={companyLogo} alt="Company Logo" style={{ marginBottom: "29px", width: "200px", height: "100px" }} />
+            <img src={companyLogo} alt="Company Logo" style={{ width: "120px", height: "60px" }} />
           </div>
 
           {/* Desktop Navigation (center) */}
-          <nav id="desktop-nav" className="hidden md:flex items-center justify-center space-x-8">
+          <nav id="desktop-nav" className="hidden md:flex items-center justify-center space-x-6">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-white hover:text-rvm-gold text-sm font-medium tracking-wide transition-colors"
@@ -136,7 +136,7 @@ export default function Header({
             <button
               id="cta-start-building"
               onClick={onStartBuildingClick}
-              className="bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] text-xs font-semibold tracking-wider px-5 py-2.5 rounded-sm transition-all duration-200 uppercase"
+              className="bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] text-xs font-semibold tracking-wider px-4 py-2 rounded-sm transition-all duration-200 uppercase"
             >
               START BUILDING
             </button>
@@ -146,7 +146,7 @@ export default function Header({
           <div id="logo" className="md:hidden flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <header>
               {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo"  style={{ marginBottom: "10px", width: "100px", height: "60px"}}/>
+              <img src={companyLogo} alt="Company Logo"  style={{ width: "90px", height: "54px"}}/>
             </header>
           </div>
 

@@ -21,9 +21,9 @@ export default function About({ onLearnMoreClick }: AboutProps) {
   };
 
   return (
-    <section id="about-section" className="py-20 xl:py-28 bg-white dark:bg-[#0B122C] transition-colors duration-300">
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-center">
+    <section id="about-section" className="py-16 xl:py-20 bg-white dark:bg-[#0B122C] transition-colors duration-300">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
           {/* Image side (Left) */}
           <div className="lg:col-span-5 relative">
@@ -38,8 +38,8 @@ export default function About({ onLearnMoreClick }: AboutProps) {
             </div>
 
             {/* Experience Badge overlay */}
-            <div className="absolute bottom-6 right-6 lg:-right-6 bg-rvm-gold text-[#0B122C] p-6 rounded-sm shadow-xl max-w-[200px] text-center transform hover:scale-105 transition-transform duration-300">
-              <p className="font-display font-bold text-3xl leading-none">10+</p>
+            <div className="absolute bottom-5 right-5 lg:-right-5 bg-rvm-gold text-[#0B122C] p-5 rounded-sm shadow-xl max-w-[170px] text-center transform hover:scale-105 transition-transform duration-300">
+              <p className="font-display font-bold text-2xl leading-none">10+</p>
               <p className="font-sans font-medium text-[10px] tracking-widest uppercase mt-2 leading-tight">
                 Years of Experience
               </p>
@@ -47,32 +47,32 @@ export default function About({ onLearnMoreClick }: AboutProps) {
           </div>
 
           {/* Content side (Right) */}
-          <div className="lg:col-span-7 space-y-6 xl:space-y-8">
+          <div className="lg:col-span-7 space-y-5 xl:space-y-6">
             <div className="space-y-2">
               <p className="font-sans font-semibold text-xs tracking-widest text-rvm-gold uppercase">
                 ABOUT RVM CONSTRUCTIONS
               </p>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-[#0B122C] dark:text-white tracking-tight leading-tight">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0B122C] dark:text-white tracking-tight leading-tight">
                 One-Stop Solution for Your <br />
                 <span className="text-rvm-gold">Dream Home Construction</span>
               </h2>
             </div>
 
-            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base xl:text-lg leading-relaxed font-light xl:max-w-2xl">
+            <p className="text-gray-600 dark:text-gray-400 text-sm xl:text-base leading-relaxed font-light xl:max-w-2xl">
               Our hands-on experience sets the stage for exceptional home building. With extensive expertise, we meet both your essential needs and professional standards, making us pioneers in the home construction industry.
             </p>
 
             {/* Feature Checkmarks */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-10 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 xl:gap-8 pt-2">
               <div className="flex items-start space-x-3">
                 <div className="bg-rvm-gold/10 p-1.5 rounded-full mt-0.5">
                   <Check className="h-4 w-4 text-rvm-gold" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm xl:text-base text-[#0B122C] dark:text-white uppercase tracking-wider">
+                  <h4 className="font-display font-bold text-sm text-[#0B122C] dark:text-white uppercase tracking-wider">
                     SITE VISIT
                   </h4>
-                  <p className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
                     Our expert team will visit your location, understand your requirements, and provide the best construction solutions tailored to your needs.
                   </p>
                 </div>
@@ -83,10 +83,10 @@ export default function About({ onLearnMoreClick }: AboutProps) {
                   <Check className="h-4 w-4 text-rvm-gold" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-sm xl:text-base text-[#0B122C] dark:text-white uppercase tracking-wider">
+                  <h4 className="font-display font-bold text-sm text-[#0B122C] dark:text-white uppercase tracking-wider">
                     END-TO-END SUPPORT
                   </h4>
-                  <p className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
                     From the initial consultation and planning to construction and final handover, we manage every stage of your dream home with complete transparency and quality.
                   </p>
                 </div>
@@ -94,10 +94,10 @@ export default function About({ onLearnMoreClick }: AboutProps) {
             </div>
 
             {/* CTA Button linked to handler */}
-            <div className="pt-4">
+            <div className="pt-3">
               <button
                 onClick={handleNavigateToAboutUs}
-                className="bg-[#0B122C] hover:bg-slate-800 dark:bg-rvm-gold dark:hover:bg-rvm-gold-hover dark:text-[#0B122C] text-white font-bold text-xs tracking-widest px-8 py-4 rounded-sm uppercase transition-all duration-300"
+                className="bg-[#0B122C] hover:bg-slate-800 dark:bg-rvm-gold dark:hover:bg-rvm-gold-hover dark:text-[#0B122C] text-white font-bold text-xs tracking-widest px-6 py-3 rounded-sm uppercase transition-all duration-300"
               >
                 Know More About Us
               </button>

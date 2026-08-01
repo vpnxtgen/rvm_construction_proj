@@ -74,15 +74,15 @@ export default function LatestProjects() {
   };
 
   return (
-    <section id="projects-section" className="py-20 xl:py-28 bg-white dark:bg-[#0B122C] transition-colors duration-300">
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+    <section id="projects-section" className="py-16 xl:py-20 bg-white dark:bg-[#0B122C] transition-colors duration-300">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         
         {/* Section Heading */}
-        <div className="text-center mb-16">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-rvm-gold tracking-tight uppercase">
+        <div className="text-center mb-10">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-rvm-gold tracking-tight uppercase">
             Latest Projects
           </h2>
-          <div className="w-16 h-1 bg-rvm-gold mx-auto mt-4 rounded-sm"></div>
+          <div className="w-14 h-1 bg-rvm-gold mx-auto mt-3 rounded-sm"></div>
         </div>
 
         {/* Carousel Container */}
@@ -91,14 +91,14 @@ export default function LatestProjects() {
           {/* Projects Slider Row */}
           <div className="overflow-hidden">
             <div 
-              className="flex transition-transform duration-500 ease-in-out gap-6"
+              className="flex transition-transform duration-500 ease-in-out gap-5"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
               {projects.map((project) => (
                 <div 
                   key={project.id} 
-                  style={{ width: `calc(${100 / itemsPerView}% - ${(24 * (itemsPerView - 1)) / itemsPerView}px)` }}
-                  className="shrink-0 rounded-lg overflow-hidden border border-gray-100 dark:border-white/5 shadow-sm group/item relative h-96 xl:h-[440px]"
+                  style={{ width: `calc(${100 / itemsPerView}% - ${(20 * (itemsPerView - 1)) / itemsPerView}px)` }}
+                  className="shrink-0 rounded-lg overflow-hidden border border-gray-100 dark:border-white/5 shadow-sm group/item relative h-72 xl:h-80"
                 >
                   <img
                     src={project.image}
@@ -107,10 +107,10 @@ export default function LatestProjects() {
                     referrerPolicy="no-referrer"
                   />
                   {/* Glassmorphism details footer on slide */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent text-white">
-                    <h3 className="font-display font-bold text-lg tracking-wide">{project.title}</h3>
-                    <p className="text-xs text-rvm-gold/90 font-medium tracking-wider mt-1">{project.location}</p>
-                    <p className="text-sm font-bold text-rvm-gold/90 mt-2">{project.status}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent text-white">
+                    <h3 className="font-display font-bold text-sm tracking-wide">{project.title}</h3>
+                    <p className="text-[10px] text-rvm-gold/90 font-medium tracking-wider mt-1">{project.location}</p>
+                    <p className="text-xs font-bold text-rvm-gold/90 mt-1.5">{project.status}</p>
                   </div>
                 </div>
               ))}
@@ -120,25 +120,25 @@ export default function LatestProjects() {
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-[#0B122C] dark:bg-[#111A3E]/90 dark:text-white flex items-center justify-center shadow-lg cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0B122C] dark:bg-[#111A3E]/90 dark:text-white flex items-center justify-center shadow-lg cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
             aria-label="Previous Projects"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white text-[#0B122C] dark:bg-[#111A3E]/90 dark:text-white flex items-center justify-center shadow-lg cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-[#0B122C] dark:bg-[#111A3E]/90 dark:text-white flex items-center justify-center shadow-lg cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"
             aria-label="Next Projects"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-5 w-5" />
           </button>
 
         </div>
 
         {/* Dots Navigation */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-6">
           {Array.from({ length: totalGroups }).map((_, idx) => (
             <button
               key={idx}
