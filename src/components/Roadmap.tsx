@@ -246,7 +246,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
         </div>
 
         {/* Main layout: vertical step nav (left) + dynamic panel (right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 xl:gap-16 items-start min-w-0">
 
           {/* Vertical Tab List */}
           <div
@@ -304,7 +304,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
           </div>
 
           {/* Dynamic Step Panel */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 items-center animate-fade-in min-h-[380px]" key={activeTab}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 items-center animate-fade-in min-h-[380px] min-w-0" key={activeTab}>
 
             {/* Left panel Image */}
             <div className="rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#0a2463] to-[#1a3a7c] h-[280px] sm:h-[340px] xl:h-[420px] flex items-center justify-center shadow-xl group">
@@ -384,7 +384,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     onClick={() => setIsModalOpen(true)}
                     className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-3 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
                   >
-                    <span>Get A Free Consultation</span>
+                    <span>Get A Quote</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 )}
@@ -398,7 +398,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
 
       </div>
 
-      {/* ==================== GET A FREE CONSULTATION MODAL OVERLAY ==================== */}
+      {/* ==================== GET A QUOTE MODAL OVERLAY ==================== */}
       {isModalOpen && (
         <div
           id="ws-quote-overlay"
