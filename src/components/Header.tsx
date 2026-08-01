@@ -89,7 +89,7 @@ export default function Header({
               onClick={() => handleLinkClick("#roadmap-section", onRoadmapClick)}
               className="text-white hover:text-rvm-gold text-sm font-medium tracking-wide transition-colors"
             >
-              HOW IT WORKS
+              OUR PROCESS
             </button>
             <button
               onClick={() => handleLinkClick("#projects-section", onProjectsClick)}
