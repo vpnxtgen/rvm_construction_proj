@@ -3,10 +3,10 @@ import { MEDIA_LOGOS, TESTIMONIALS } from "../data";
 
 export default function MediaAndTestimonials() {
   return (
-    <section id="media-testimonials-section" className="bg-[#FAF8F5] py-20">
+    <section id="media-testimonials-section" className="bg-[#FAF8F5] py-20 xl:py-28">
       
       {/* Media Logo bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 border-b border-gray-200">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pb-16 border-b border-gray-200">
         <p className="font-sans font-semibold text-[10px] tracking-widest text-center text-gray-400 uppercase mb-8">
           FEATURED IN MEDIA
         </p>
@@ -14,7 +14,7 @@ export default function MediaAndTestimonials() {
           {MEDIA_LOGOS.map((logo) => (
             <span
               key={logo}
-              className="font-display font-bold text-lg md:text-xl text-gray-500 tracking-wider hover:text-rvm-gold transition-colors duration-300 select-none"
+              className="font-display font-bold text-lg md:text-xl xl:text-2xl text-gray-500 tracking-wider hover:text-rvm-gold transition-colors duration-300 select-none"
             >
               {logo}
             </span>
@@ -23,20 +23,20 @@ export default function MediaAndTestimonials() {
       </div>
 
       {/* Testimonials */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pt-20">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-2">
+        <div className="text-center max-w-2xl xl:max-w-3xl mx-auto mb-16 space-y-2">
           <p className="font-sans font-semibold text-xs tracking-widest text-rvm-gold uppercase">
             TESTIMONIALS
           </p>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#0B122C] tracking-tight leading-tight">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-[#0B122C] tracking-tight leading-tight">
             Listen To Their Experience With Us
           </h2>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 xl:gap-10">
           {TESTIMONIALS.map((t, idx) => {
             const isDark = t.bgColor.includes("bg-[#0B122C]");
             

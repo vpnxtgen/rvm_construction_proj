@@ -16,10 +16,10 @@ export default function Footer() {
 
   return (
     <footer id="footer" className="bg-[#060B1C] text-gray-400 pt-16 pb-8 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         
         {/* Main Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 mb-12">
           
           {/* Logo & Description column */}
           <div className="lg:col-span-5 space-y-5">
@@ -40,7 +40,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm leading-relaxed text-gray-500 font-light">
+            <p className="text-xs sm:text-sm xl:text-base leading-relaxed text-gray-500 font-light xl:max-w-md">
               A one-stop solution for all your home construction needs, providing comprehensive turnkey solutions for your architectural desires. We deliver premium homes built on a foundation of trust, quality, and complete transparency.
             </p>
 
@@ -77,7 +77,7 @@ export default function Footer() {
             <h4 className="font-display font-bold text-xs tracking-widest text-white uppercase">
               OUR OFFICE ADDRESS
             </h4>
-            <div className="flex items-start space-x-2.5 text-xs sm:text-sm font-light leading-relaxed">
+            <div className="flex items-start space-x-2.5 text-xs sm:text-sm xl:text-base font-light leading-relaxed">
               <MapPin className="h-4 w-4 text-rvm-gold mt-1 shrink-0" />
               <div>
                 <p className="font-semibold text-white mb-1">RVM Constructions (H.O)</p>
@@ -88,6 +88,13 @@ export default function Footer() {
                 </p>
               </div>
             </div>
+
+            <div className="flex items-center space-x-2.5 text-xs sm:text-sm xl:text-base font-light pt-1">
+              <Phone className="h-4 w-4 text-rvm-gold shrink-0" />
+              <a href="tel:+918296777056" className="text-gray-400 hover:text-rvm-gold transition-colors">
+                +91 82967 77056
+              </a>
+            </div>
           </div>
 
           {/* Resources Column */}
@@ -95,7 +102,7 @@ export default function Footer() {
             <h4 className="font-display font-bold text-xs tracking-widest text-white uppercase">
               RESOURCES
             </h4>
-            <ul className="space-y-2 text-xs sm:text-sm font-light">
+            <ul className="space-y-2 text-xs sm:text-sm xl:text-base font-light">
               <li>
                 <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-rvm-gold transition-colors">
                   Privacy Policy

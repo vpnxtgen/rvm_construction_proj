@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import project1Image  from "../assets/images/project_1.png";
 import project2Image  from "../assets/images/project_2.png";
@@ -13,6 +13,7 @@ interface ProjectItem {
 
 export default function LatestProjects() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(2);
 
   const projects: ProjectItem[] = [
     {
@@ -45,24 +46,40 @@ export default function LatestProjects() {
     }
   ];
 
+  // Show more cards per view on wider screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 1280) {
+        setItemsPerView(2);
+      } else {
+        setItemsPerView(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const totalGroups = Math.max(1, Math.ceil(projects.length / itemsPerView));
+
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % Math.ceil(projects.length / 2));
+    setActiveIndex((prev) => (prev + 1) % totalGroups);
   };
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + Math.ceil(projects.length / 2)) % Math.ceil(projects.length / 2));
+    setActiveIndex((prev) => (prev - 1 + totalGroups) % totalGroups);
   };
 
   return (
-    <section id="projects-section" className="py-20 bg-white dark:bg-[#0B122C] transition-colors duration-300">
-      <br/>
-      <br/>
-      <br/>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects-section" className="py-20 xl:py-28 bg-white dark:bg-[#0B122C] transition-colors duration-300">
+      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
         
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl text-rvm-gold tracking-tight uppercase">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-rvm-gold tracking-tight uppercase">
             Latest Projects
           </h2>
           <div className="w-16 h-1 bg-rvm-gold mx-auto mt-4 rounded-sm"></div>
@@ -80,14 +97,14 @@ export default function LatestProjects() {
               {projects.map((project) => (
                 <div 
                   key={project.id} 
-                  className="w-full md:w-[calc(50%-12px)] shrink-0 rounded-lg overflow-hidden border border-gray-100 dark:border-white/5 shadow-sm group/item relative h-96"
+                  style={{ width: `calc(${100 / itemsPerView}% - ${(24 * (itemsPerView - 1)) / itemsPerView}px)` }}
+                  className="shrink-0 rounded-lg overflow-hidden border border-gray-100 dark:border-white/5 shadow-sm group/item relative h-96 xl:h-[440px]"
                 >
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-105"
                     referrerPolicy="no-referrer"
-                    style={{ aspectRatio: '4/3' , height: '400px'}} // Ensures consistent aspect ratio
                   />
                   {/* Glassmorphism details footer on slide */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent text-white">
@@ -122,7 +139,7 @@ export default function LatestProjects() {
 
         {/* Dots Navigation */}
         <div className="flex justify-center gap-2 mt-8">
-          {Array.from({ length: Math.ceil(projects.length / 2) }).map((_, idx) => (
+          {Array.from({ length: totalGroups }).map((_, idx) => (
             <button
               key={idx}
               onClick={() => setActiveIndex(idx)}

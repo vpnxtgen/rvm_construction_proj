@@ -41,12 +41,16 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
   };
 
   return (
-    <section id="hero-section" className="relative bg-[#0B122C] text-white pt-24 md:pt-32 pb-12 overflow-hidden">
+    <section
+      id="hero-section"
+      aria-label="RVM Constructions - Premium Home and Villa Construction Company"
+      className="relative bg-[#0B122C] text-white pt-24 md:pt-32 pb-12 overflow-hidden"
+    >
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src="/src/assets/images/rvm_hero_house_1783953334166.jpg"
-          alt="RVM Luxury Villa Construction"
+          alt="RVM Constructions - custom home and luxury villa construction company showcasing premium residential building craftsmanship"
           className="w-full h-full object-cover object-center opacity-40 select-none"
           referrerPolicy="no-referrer"
         />
@@ -54,11 +58,11 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B122C] via-transparent to-transparent"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[550px] pt-4">
+      <div className="relative z-10 max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20 items-center min-h-[550px] lg:min-h-[calc(100vh-260px)] lg:max-h-[780px] pt-4">
           
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 xl:space-y-8">
             <div className="inline-flex items-center space-x-2 bg-rvm-gold/15 border border-rvm-gold/30 px-3 py-1 rounded-full">
               <span className="w-2 h-2 rounded-full bg-rvm-gold animate-pulse"></span>
               <span className="text-xs font-semibold tracking-widest text-rvm-gold uppercase">
@@ -66,18 +70,27 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
               </span>
             </div>
 
-            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-tight">
+            {/* H1 stays as the primary keyword-rich heading for SEO */}
+            <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-tight">
               Stop Dreaming and <br />
               <span className="text-rvm-gold text-glow">Start Building.</span>
             </h1>
 
-            <p className="text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed font-light">
-              RVM Constructions brings architectural integrity and premium craftsmanship to your doorstep. We turn your vision into a structural reality with an uncompromising focus on quality, transparency, and timely delivery.
+            {/* Keyword-rich supporting line (visible, natural placement — not stuffed) */}
+            <p className="text-gray-400 text-sm tracking-wide uppercase font-medium">
+              Trusted Home & Villa Construction Company
+            </p>
+
+            <p className="text-gray-300 text-base sm:text-lg xl:text-xl max-w-xl xl:max-w-2xl leading-relaxed font-light">
+              RVM Constructions brings architectural integrity and premium craftsmanship to your doorstep.
+              As a leading residential and villa construction company, we turn your vision into a structural
+              reality with an uncompromising focus on quality, transparency, and timely project delivery.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button
                 onClick={onContactClick}
+                aria-label="Contact RVM Constructions for a home construction quote"
                 className="bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] px-8 py-4 font-bold text-sm tracking-wider rounded-sm transition-all duration-300 shadow-lg shadow-rvm-gold/20 uppercase"
               >
                 Contact Us Today
@@ -87,32 +100,51 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
                   const element = document.querySelector("#packages-section");
                   if (element) element.scrollIntoView({ behavior: "smooth" });
                 }}
+                aria-label="View RVM Constructions completed building and villa projects"
                 className="border border-white/30 hover:border-white hover:bg-white/5 text-white px-8 py-4 font-bold text-sm tracking-wider rounded-sm transition-all duration-300 uppercase"
               >
                 View Our Work
               </button>
             </div>
+
+            {/* Trust strip - fills leftover space under CTAs on large screens */}
+            <div className="hidden xl:flex items-center gap-8 pt-8 border-t border-white/10 mt-4">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-rvm-gold" />
+                <span className="text-sm text-gray-300 font-medium">Licensed & Insured Builders</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-rvm-gold" />
+                <span className="text-sm text-gray-300 font-medium">Transparent Fixed Pricing</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-rvm-gold" />
+                <span className="text-sm text-gray-300 font-medium">On-Site Quality Audits</span>
+              </div>
+            </div>
           </div>
 
           {/* Consultation Form (Right) */}
           <div className="lg:col-span-5">
-            <div className="bg-[#111A3E]/90 border border-white/10 p-6 sm:p-8 rounded-sm shadow-2xl backdrop-blur-md">
-              <h3 className="font-display font-bold text-2xl text-white mb-2 tracking-wide text-center lg:text-left">
+            <div className="bg-[#111A3E]/90 border border-white/10 p-6 sm:p-8 xl:p-10 rounded-sm shadow-2xl backdrop-blur-md xl:max-w-lg xl:ml-auto">
+              <h2 className="font-display font-bold text-2xl xl:text-3xl text-white mb-2 tracking-wide text-center lg:text-left">
                 Quick Consultation
-              </h3>
-              <p className="text-xs text-gray-400 mb-6 text-center lg:text-left">
-                Get a personalized estimation & layout consultation for your dream home.
+              </h2>
+              <p className="text-xs xl:text-sm text-gray-400 mb-6 text-center lg:text-left">
+                Get a personalized estimation & layout consultation for your dream home construction project.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" aria-label="Home construction consultation request form">
                 {error && (
-                  <div className="p-3 bg-red-900/40 border border-red-500/50 rounded-sm text-xs text-red-200">
+                  <div className="p-3 bg-red-900/40 border border-red-500/50 rounded-sm text-xs text-red-200" role="alert">
                     {error}
                   </div>
                 )}
 
                 <div className="relative">
+                  <label htmlFor="hero-name" className="sr-only">Full Name</label>
                   <input
+                    id="hero-name"
                     type="text"
                     value={name}
                     onChange={(e) => {
@@ -125,7 +157,9 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
                 </div>
 
                 <div className="relative">
+                  <label htmlFor="hero-phone" className="sr-only">Phone Number</label>
                   <input
+                    id="hero-phone"
                     type="tel"
                     value={phone}
                     onChange={(e) => {
@@ -139,7 +173,9 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
                 </div>
 
                 <div className="relative">
+                  <label htmlFor="hero-location" className="sr-only">Select Location</label>
                   <select
+                    id="hero-location"
                     value={location}
                     onChange={(e) => {
                       setLocation(e.target.value);
@@ -161,6 +197,7 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
 
                 <button
                   type="submit"
+                  aria-label="Submit construction requirement form"
                   className="w-full bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] py-4 rounded-sm font-bold text-xs tracking-widest uppercase transition-all duration-300"
                 >
                   SUBMIT REQUIREMENT
@@ -173,13 +210,13 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
 
         {/* Stats Section bar */}
         <div className="mt-16 border-t border-white/10 pt-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 xl:gap-10 text-center">
             {STATS.map((stat, idx) => (
               <div key={idx} className="space-y-1">
-                <p className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-rvm-gold tracking-tight">
+                <p className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-rvm-gold tracking-tight">
                   {stat.value}
                 </p>
-                <p className="font-sans font-medium text-[10px] sm:text-xs tracking-widest text-gray-400 uppercase">
+                <p className="font-sans font-medium text-[10px] sm:text-xs xl:text-sm tracking-widest text-gray-400 uppercase">
                   {stat.label}
                 </p>
               </div>
