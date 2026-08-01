@@ -223,30 +223,30 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
   const activeStep = steps[activeTab];
 
   return (
-    <section id="roadmap-section" className="py-20 xl:py-28 bg-white dark:bg-[#0B122C] relative overflow-hidden transition-colors duration-300">
+    <section id="roadmap-section" className="py-16 xl:py-20 bg-white dark:bg-[#0B122C] relative overflow-hidden transition-colors duration-300">
       {/* Decorative radial gradients matching raw HTML style */}
       <div className="absolute -top-[120px] -right-[120px] w-[400px] height-[400px] bg-gradient-radial from-emerald-500/5 to-transparent rounded-full pointer-events-none"></div>
       <div className="absolute -bottom-[80px] -left-[80px] w-[300px] height-[300px] bg-gradient-radial from-[#0a2463]/5 to-transparent rounded-full pointer-events-none"></div>
 
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
 
         {/* Section Header */}
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-3">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-2">
             <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
             <span>How It Works</span>
             <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl xl:text-5xl text-[#0a1f44] dark:text-white tracking-tight leading-tight uppercase">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0a1f44] dark:text-white tracking-tight leading-tight uppercase">
             Our Proven House Construction Process
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base xl:text-lg max-w-lg xl:max-w-2xl mx-auto mt-3 leading-relaxed font-light">
+          <p className="text-gray-500 dark:text-gray-400 text-sm xl:text-base max-w-lg xl:max-w-2xl mx-auto mt-2 leading-relaxed font-light">
             From the first conversation to your final walkthrough, we are with you every step of the way.
           </p>
         </div>
 
         {/* Main layout: vertical step nav (left) + dynamic panel (right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-10 xl:gap-16 items-start min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] gap-8 xl:gap-12 items-start min-w-0">
 
           {/* Vertical Tab List */}
           <div
@@ -263,7 +263,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     setActiveTab(idx);
                     setFormError("");
                   }}
-                  className={`flex items-center gap-4 shrink-0 lg:w-full text-left px-4 py-3.5 lg:pl-6 rounded-xl lg:rounded-none transition-all cursor-pointer relative ${
+                  className={`flex items-center gap-3 shrink-0 lg:w-full text-left px-3 py-2.5 lg:pl-5 rounded-xl lg:rounded-none transition-all cursor-pointer relative ${
                     isActive
                       ? "bg-emerald-50 dark:bg-emerald-500/10 lg:bg-transparent lg:before:absolute lg:before:left-[-1px] lg:before:top-0 lg:before:bottom-0 lg:before:w-[3px] lg:before:bg-emerald-500"
                       : "hover:bg-gray-50 dark:hover:bg-white/5"
@@ -271,7 +271,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                   role="tab"
                   aria-selected={isActive}
                 >
-                  <div className={`w-11 h-11 xl:w-12 xl:h-12 rounded-full flex items-center justify-center overflow-hidden shadow-md shrink-0 transition-all ${
+                  <div className={`w-9 h-9 xl:w-10 xl:h-10 rounded-full flex items-center justify-center overflow-hidden shadow-md shrink-0 transition-all ${
                     isActive ? "ring-2 ring-emerald-500/50 scale-105" : ""
                   }`}>
                     <img
@@ -285,12 +285,12 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                   </div>
 
                   <div className="flex flex-col min-w-0">
-                    <span className={`text-[10px] font-bold tracking-wider ${
+                    <span className={`text-[9px] font-bold tracking-wider ${
                       isActive ? "text-emerald-500" : "text-gray-400"
                     }`}>
                       {step.number}
                     </span>
-                    <span className={`text-xs xl:text-sm leading-tight whitespace-nowrap lg:whitespace-normal ${
+                    <span className={`text-xs leading-tight whitespace-nowrap lg:whitespace-normal ${
                       isActive
                         ? "text-emerald-600 dark:text-emerald-400 font-semibold"
                         : "text-gray-600 dark:text-gray-400 font-medium"
@@ -304,12 +304,12 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
           </div>
 
           {/* Dynamic Step Panel */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 items-center animate-fade-in min-h-[380px] min-w-0" key={activeTab}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12 items-center animate-fade-in min-h-[300px] min-w-0" key={activeTab}>
 
             {/* Left panel Image */}
-            <div className="rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#0a2463] to-[#1a3a7c] h-[280px] sm:h-[340px] xl:h-[420px] flex items-center justify-center shadow-xl group">
+            <div className="rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#0a2463] to-[#1a3a7c] h-[220px] sm:h-[260px] xl:h-[320px] flex items-center justify-center shadow-xl group">
               {/* Background vector building layout */}
-              <div className="absolute bottom-[-10px] right-[-10px] text-white/5 font-bold font-display text-9xl pointer-events-none select-none">
+              <div className="absolute bottom-[-10px] right-[-10px] text-white/5 font-bold font-display text-7xl pointer-events-none select-none">
                 RVM
               </div>
 
@@ -321,38 +321,38 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     setIsFallback(true);
                   }}
                   className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                    isFallback ? "object-cover" : "object-contain p-4 sm:p-6"
+                    isFallback ? "object-cover" : "object-contain p-3 sm:p-4"
                   }`}
                   referrerPolicy="no-referrer"
                 />
                 {isFallback && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>}
 
                 {/* Badge Overlay */}
-                <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 bg-white/15 border border-white/20 backdrop-blur-md rounded-full px-4 py-1.5 text-xs text-white font-semibold">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 bg-white/15 border border-white/20 backdrop-blur-md rounded-full px-3 py-1 text-[10px] text-white font-semibold">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
                   <span>{activeStep.badge}</span>
                 </div>
               </div>
             </div>
 
             {/* Right panel Body */}
-            <div className="space-y-5 xl:space-y-6">
+            <div className="space-y-3 xl:space-y-4">
               <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-emerald-600 uppercase">
                 <span className="inline-block w-5 h-[1.5px] bg-emerald-500 rounded-sm"></span>
                 <span>{activeStep.stepName}</span>
               </div>
 
-              <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0a1f44] dark:text-white tracking-tight">
+              <h3 className="font-display font-bold text-xl sm:text-2xl xl:text-3xl text-[#0a1f44] dark:text-white tracking-tight">
                 {activeStep.title}
               </h3>
 
-              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base xl:text-lg leading-relaxed font-light">
+              <p className="text-gray-500 dark:text-gray-400 text-sm xl:text-base leading-relaxed font-light">
                 {activeStep.description}
               </p>
 
-              <ul className="space-y-2.5">
+              <ul className="space-y-2">
                 {activeStep.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm xl:text-base text-gray-700 dark:text-gray-300 font-medium">
+                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-medium">
                     <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
                     <span>{feature}</span>
                   </li>
@@ -360,11 +360,11 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
               </ul>
 
               {/* Panel Navigation & Actions */}
-              <div className="flex gap-4 pt-3">
+              <div className="flex gap-3 pt-2">
                 {activeTab > 0 && (
                   <button
                     onClick={handlePrev}
-                    className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-emerald-500 hover:text-emerald-500 px-6 py-2.5 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-emerald-500 hover:text-emerald-500 px-5 py-2 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
                   >
                     <ArrowLeft className="h-4 w-4" />
                     <span>Previous</span>
@@ -374,7 +374,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 {activeTab < steps.length - 1 ? (
                   <button
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-emerald-500 hover:translate-x-1 text-white px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-emerald-500 hover:translate-x-1 text-white px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer"
                   >
                     <span>Next Step</span>
                     <ArrowRight className="h-4 w-4" />
@@ -382,7 +382,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 ) : (
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-3 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
                   >
                     <span>Get A Quote</span>
                     <ArrowRight className="h-4 w-4" />

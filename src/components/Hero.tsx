@@ -44,7 +44,7 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
     <section
       id="hero-section"
       aria-label="RVM Constructions - Premium Home and Villa Construction Company"
-      className="relative bg-[#0B122C] text-white pt-20 md:pt-28 pb-10 overflow-hidden"
+      className="relative bg-[#0B122C] text-white pt-16 md:pt-20 pb-6 overflow-hidden"
     >
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
@@ -59,10 +59,10 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
       </div>
 
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-14 items-center min-h-[500px] lg:min-h-[calc(100vh-300px)] lg:max-h-[680px] pt-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-10 items-center min-h-[400px] lg:min-h-[calc(100vh-460px)] lg:max-h-[460px] pt-1">
           
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 space-y-4 xl:space-y-5">
+          <div className="lg:col-span-7 space-y-3 xl:space-y-4">
             <div className="inline-flex items-center space-x-2 bg-rvm-gold/15 border border-rvm-gold/30 px-3 py-1 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-rvm-gold animate-pulse"></span>
               <span className="text-xs font-semibold tracking-widest text-rvm-gold uppercase">
@@ -209,14 +209,14 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
         </div>
 
         {/* Stats Section bar */}
-        <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 xl:gap-8 text-center">
+        <div className="mt-5 border-t border-white/10 pt-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 xl:gap-6 text-center">
             {STATS.map((stat, idx) => (
-              <div key={idx} className="space-y-1">
-                <p className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-rvm-gold tracking-tight">
+              <div key={idx} className="space-y-1 px-1 overflow-hidden">
+                <p className="font-display font-bold text-xl sm:text-2xl lg:text-3xl xl:text-4xl text-rvm-gold tracking-tight whitespace-nowrap">
                   {stat.value}
                 </p>
-                <p className="font-sans font-medium text-[10px] sm:text-xs xl:text-sm tracking-widest text-gray-400 uppercase">
+                <p className="font-sans font-medium text-[9px] sm:text-[10px] xl:text-xs tracking-wider text-gray-400 uppercase leading-snug">
                   {stat.label}
                 </p>
               </div>
