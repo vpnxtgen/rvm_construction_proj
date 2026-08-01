@@ -42,7 +42,7 @@ interface ProcessStep {
 export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  
+
   // Quote form states
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -229,7 +229,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       <div className="absolute -bottom-[80px] -left-[80px] w-[300px] height-[300px] bg-gradient-radial from-[#0a2463]/5 to-transparent rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24">
-        
+
         {/* Section Header */}
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-3">
@@ -245,162 +245,160 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
           </p>
         </div>
 
-        {/* Tab List */}
-        <div className="flex justify-center border-b border-gray-200 dark:border-white/10 mb-12 flex-wrap gap-2 md:gap-4 xl:gap-6" role="tablist">
-          {steps.map((step, idx) => {
-            const isActive = activeTab === idx;
-            return (
-              <button
-                key={step.number}
-                onClick={() => {
-                  setActiveTab(idx);
-                  setFormError("");
-                }}
-                className={`flex flex-col items-center gap-2.5 pb-5 px-4 cursor-pointer border-b-3 transition-all relative min-w-[100px] md:min-w-[120px] ${
-                  isActive 
-                    ? "border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold" 
-                    : "border-transparent text-gray-400 font-medium hover:text-emerald-500"
-                }`}
-                role="tab"
-                aria-selected={isActive}
-              >
-                <span className={`text-[10px] font-bold tracking-wider absolute top-0 left-4 transition-colors ${
-                  isActive ? "text-emerald-500" : "text-gray-400"
-                }`}>
-                  {step.number}
-                </span>
+        {/* Main layout: vertical step nav (left) + dynamic panel (right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10 xl:gap-16 items-start">
 
-                <div className={`w-14 h-14 xl:w-16 xl:h-16 rounded-full flex items-center justify-center overflow-hidden shadow-md transition-all ${
-                  isActive 
-                    ? "translate-y-[-4px] ring-2 ring-emerald-500/50 scale-105" 
-                    : "hover:translate-y-[-3px] hover:shadow-lg"
-                }`}>
-                  <img
-                    src={step.imgUrl}
-                    alt={step.title}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = step.fallbackUrl;
-                    }}
-                    className="w-full h-full object-cover"
-                  />
+          {/* Vertical Tab List */}
+          <div
+            className="flex lg:flex-col gap-2 lg:gap-1 overflow-x-auto lg:overflow-visible relative lg:border-l lg:border-gray-200 dark:lg:border-white/10"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            {steps.map((step, idx) => {
+              const isActive = activeTab === idx;
+              return (
+                <button
+                  key={step.number}
+                  onClick={() => {
+                    setActiveTab(idx);
+                    setFormError("");
+                  }}
+                  className={`flex items-center gap-4 shrink-0 lg:w-full text-left px-4 py-3.5 lg:pl-6 rounded-xl lg:rounded-none transition-all cursor-pointer relative ${
+                    isActive
+                      ? "bg-emerald-50 dark:bg-emerald-500/10 lg:bg-transparent lg:before:absolute lg:before:left-[-1px] lg:before:top-0 lg:before:bottom-0 lg:before:w-[3px] lg:before:bg-emerald-500"
+                      : "hover:bg-gray-50 dark:hover:bg-white/5"
+                  }`}
+                  role="tab"
+                  aria-selected={isActive}
+                >
+                  <div className={`w-11 h-11 xl:w-12 xl:h-12 rounded-full flex items-center justify-center overflow-hidden shadow-md shrink-0 transition-all ${
+                    isActive ? "ring-2 ring-emerald-500/50 scale-105" : ""
+                  }`}>
+                    <img
+                      src={step.imgUrl}
+                      alt={step.title}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = step.fallbackUrl;
+                      }}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="flex flex-col min-w-0">
+                    <span className={`text-[10px] font-bold tracking-wider ${
+                      isActive ? "text-emerald-500" : "text-gray-400"
+                    }`}>
+                      {step.number}
+                    </span>
+                    <span className={`text-xs xl:text-sm leading-tight whitespace-nowrap lg:whitespace-normal ${
+                      isActive
+                        ? "text-emerald-600 dark:text-emerald-400 font-semibold"
+                        : "text-gray-600 dark:text-gray-400 font-medium"
+                    }`}>
+                      {step.label}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Dynamic Step Panel */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-16 items-center animate-fade-in min-h-[380px]" key={activeTab}>
+
+            {/* Left panel Image */}
+            <div className="rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#0a2463] to-[#1a3a7c] h-[280px] sm:h-[340px] xl:h-[420px] flex items-center justify-center shadow-xl group">
+              {/* Background vector building layout */}
+              <div className="absolute bottom-[-10px] right-[-10px] text-white/5 font-bold font-display text-9xl pointer-events-none select-none">
+                RVM
+              </div>
+
+              <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
+                <img
+                  src={isFallback ? activeStep.fallbackUrl : activeStep.imgUrl}
+                  alt={activeStep.title}
+                  onError={() => {
+                    setIsFallback(true);
+                  }}
+                  className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
+                    isFallback ? "object-cover" : "object-contain p-4 sm:p-6"
+                  }`}
+                  referrerPolicy="no-referrer"
+                />
+                {isFallback && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>}
+
+                {/* Badge Overlay */}
+                <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 bg-white/15 border border-white/20 backdrop-blur-md rounded-full px-4 py-1.5 text-xs text-white font-semibold">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                  <span>{activeStep.badge}</span>
                 </div>
-
-                <span className="text-[11px] xl:text-xs leading-tight text-center whitespace-pre-line text-gray-600 dark:text-gray-400">
-                  {step.label.replace(" ", "\n")}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Dynamic Step Panel */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 xl:gap-20 items-center animate-fade-in min-h-[380px]" key={activeTab}>
-          
-          {/* Left panel Image */}
-          <div className="rounded-2xl overflow-hidden relative bg-gradient-to-br from-[#0a2463] to-[#1a3a7c] h-[280px] sm:h-[340px] xl:h-[420px] flex items-center justify-center shadow-xl group">
-            {/* Background vector building layout */}
-            <div className="absolute bottom-[-10px] right-[-10px] text-white/5 font-bold font-display text-9xl pointer-events-none select-none">
-              RVM
-            </div>
-
-            <div className="relative z-10 text-center w-full h-full flex items-center justify-center">
-              <img
-                src={isFallback ? activeStep.fallbackUrl : activeStep.imgUrl}
-                alt={activeStep.title}
-                onError={() => {
-                  setIsFallback(true);
-                }}
-                className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                  isFallback ? "object-cover" : "object-contain p-4 sm:p-6"
-                }`}
-                referrerPolicy="no-referrer"
-              />
-              {isFallback && <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>}
-              
-              {/* Badge Overlay */}
-              <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 bg-white/15 border border-white/20 backdrop-blur-md rounded-full px-4 py-1.5 text-xs text-white font-semibold">
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-                <span>{activeStep.badge}</span>
               </div>
             </div>
-          </div>
 
-          {/* Right panel Body */}
-          <div className="space-y-5 xl:space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-emerald-600 uppercase">
-              <span className="inline-block w-5 h-[1.5px] bg-emerald-500 rounded-sm"></span>
-              <span>{activeStep.stepName}</span>
+            {/* Right panel Body */}
+            <div className="space-y-5 xl:space-y-6">
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-emerald-600 uppercase">
+                <span className="inline-block w-5 h-[1.5px] bg-emerald-500 rounded-sm"></span>
+                <span>{activeStep.stepName}</span>
+              </div>
+
+              <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0a1f44] dark:text-white tracking-tight">
+                {activeStep.title}
+              </h3>
+
+              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base xl:text-lg leading-relaxed font-light">
+                {activeStep.description}
+              </p>
+
+              <ul className="space-y-2.5">
+                {activeStep.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm xl:text-base text-gray-700 dark:text-gray-300 font-medium">
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Panel Navigation & Actions */}
+              <div className="flex gap-4 pt-3">
+                {activeTab > 0 && (
+                  <button
+                    onClick={handlePrev}
+                    className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-emerald-500 hover:text-emerald-500 px-6 py-2.5 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    <span>Previous</span>
+                  </button>
+                )}
+
+                {activeTab < steps.length - 1 ? (
+                  <button
+                    onClick={handleNext}
+                    className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-emerald-500 hover:translate-x-1 text-white px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer"
+                  >
+                    <span>Next Step</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-3 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
+                  >
+                    <span>Get A Free Consultation</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+
             </div>
 
-            <h3 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0a1f44] dark:text-white tracking-tight">
-              {activeStep.title}
-            </h3>
-
-            <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base xl:text-lg leading-relaxed font-light">
-              {activeStep.description}
-            </p>
-
-            <ul className="space-y-2.5">
-              {activeStep.features.map((feature, idx) => (
-                <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm xl:text-base text-gray-700 dark:text-gray-300 font-medium">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Panel Navigation & Actions */}
-            <div className="flex gap-4 pt-3">
-              {activeTab > 0 && (
-                <button
-                  onClick={handlePrev}
-                  className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-emerald-500 hover:text-emerald-500 px-6 py-2.5 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                  <span>Previous</span>
-                </button>
-              )}
-
-              {activeTab < steps.length - 1 ? (
-                <button
-                  onClick={handleNext}
-                  className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-emerald-500 hover:translate-x-1 text-white px-6 py-2.5 rounded-full text-xs font-semibold transition-all cursor-pointer"
-                >
-                  <span>Next Step</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              ) : (
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-3 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
-                >
-                  <span>Get A Quote</span>
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-
           </div>
 
-        </div>
-
-        {/* Progress Dots */}
-        <div className="flex justify-center gap-2.5 mt-10">
-          {steps.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveTab(idx)}
-              className={`h-2 rounded-full transition-all cursor-pointer ${
-                activeTab === idx ? "w-6 bg-emerald-500" : "w-2 bg-gray-300 dark:bg-gray-700"
-              }`}
-              aria-label={`Step ${idx + 1}`}
-            ></button>
-          ))}
         </div>
 
       </div>
 
-      {/* ==================== GET A QUOTE MODAL OVERLAY ==================== */}
+      {/* ==================== GET A FREE CONSULTATION MODAL OVERLAY ==================== */}
       {isModalOpen && (
         <div
           id="ws-quote-overlay"
@@ -410,7 +408,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
           }}
         >
           <div className="bg-white rounded-2xl overflow-hidden shadow-2xl relative max-w-4xl w-full flex flex-col md:flex-row max-h-[90vh] my-8">
-            
+
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
@@ -458,7 +456,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                
+
                 {/* Name */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#0a1f44] block">
