@@ -29,13 +29,15 @@ import {
   Sparkles,
   MapPin,
   ExternalLink,
-  ChevronDown
+  ChevronDown,
+  Menu
 } from 'lucide-react';
 
-import companyLogo from "./assets/images/RVM_Construction_main_logo_2.png";
+import companyLogo  from "./assets/images/rvm_main_logo_v2.png";
 import founderImage from "./assets/images/Vishwas_Image.jpeg";
 import { BookingModal} from "./components/InteractiveModals";
 import { Package } from "./data";
+import { useNavigate } from 'react-router-dom'; // Only import what you actually use
 
 // Interfaces for State & Data
 interface TimelineItem {
@@ -68,8 +70,25 @@ interface ValueItem {
   };
 }
 
+interface AboutProps {
+  onLearnMoreClick?: () => void; // Made optional in case you only want router navigation
+}
 
-export default function App() {
+
+export default function App({ onLearnMoreClick }: AboutProps) {
+
+  const navigate = useNavigate();
+
+  // 2. Clear, scoped navigation handler function
+  const handleNavigateToAboutUs = () => {
+    // If you still have parent state modal logic to execute, run it first
+    if (onLearnMoreClick) {
+      onLearnMoreClick();
+    }
+    
+    // Redirect to your absolute router path
+    navigate('/'); 
+  };
   // Navigation & Scroll Tracking
   const [activeSection, setActiveSection] = useState('about-us');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -111,6 +130,7 @@ export default function App() {
 
   // Refs for Scroll Anchors
   const heroRef = useRef<HTMLDivElement>(null);
+  const aboutFounderRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const valuesRef = useRef<HTMLDivElement>(null);
@@ -131,6 +151,7 @@ export default function App() {
 
       const offsets = [
         { id: 'home', ref: heroRef },
+        { id: 'about-founder', ref: aboutFounderRef },
         { id: 'about-us', ref: successRef },
         { id: 'services', ref: servicesRef },
         { id: 'values', ref: valuesRef },
@@ -429,18 +450,17 @@ const openQuoteModal = () => {
       />
        
       {/* HEADER / NAVIGATION */}
-      {/* HEADER / NAVIGATION */}
       <header
         id="app-header"
         className="sticky top-0 z-40 w-full bg-[#0a1128]/95 border-b border-white/10 shadow-sm backdrop-blur-md"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-20">
+          <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center h-20 gap-6 lg:gap-8">
 
             {/* LOGO - LEFT */}
             <div
               id="logo"
-              className="flex items-center cursor-pointer flex-shrink-0"
+              className="flex items-center cursor-pointer flex-shrink-0 justify-self-start"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               <img
@@ -455,17 +475,12 @@ const openQuoteModal = () => {
             {/* NAVIGATION - CENTER */}
             <nav
               id="desktop-nav"
-              className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10"
+              className="hidden md:flex items-center justify-center gap-6 lg:gap-10 justify-self-center"
             >
               {/* HOME */}
               <button
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                  })
-                }
-                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+                onClick={handleNavigateToAboutUs}
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors whitespace-nowrap"
               >
                 HOME
               </button>
@@ -473,7 +488,7 @@ const openQuoteModal = () => {
               {/* OUR TEAM */}
               <button
                 onClick={() => handleLinkClick("#strength-stats")}
-                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors whitespace-nowrap"
               >
                 OUR TEAM
               </button>
@@ -481,38 +496,119 @@ const openQuoteModal = () => {
               {/* OUR STORY */}
               <button
                 onClick={() => handleLinkClick("#success-story")}
-                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors whitespace-nowrap"
               >
                 OUR JOURNEY
+              </button>
+
+              {/* About Founder */}
+              <button
+                onClick={() => handleLinkClick("#about-founder")}
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors whitespace-nowrap"
+              >
+                ABOUT FOUNDER
               </button>
             </nav>
 
             {/* RIGHT SIDE */}
-            <div className="flex items-center gap-6 ml-auto">
+            <div className="flex items-center gap-6 justify-self-end">
 
               {/* PHONE */}
               <a
                 href="tel:+918296777056"
-                className="hidden sm:flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
+                className="hidden lg:flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
               >
                 <Phone className="w-5 h-5 text-amber-400" />
-                <span className="text-sm font-semibold">
+                <span className="text-sm font-semibold whitespace-nowrap">
                   +91 82967 77056
                 </span>
               </a>
 
-              {/* START BUILDING */}
+              {/* FREE CONSULTATION */}
               <button
                 id="header-btn-quote"
                 onClick={openQuoteModal}
-                className="bg-[#d9a62e] text-[#111827] px-6 py-3 rounded-md text-sm font-bold tracking-wide hover:bg-amber-400 transition-all duration-300 shadow-md"
+                className="hidden sm:inline-flex bg-[#d9a62e] text-[#111827] px-6 py-3 rounded-md text-sm font-bold tracking-wide hover:bg-amber-400 transition-all duration-300 shadow-md whitespace-nowrap"
               >
-                START BUILDING
+                FREE CONSULTATION
+              </button>
+
+              {/* MOBILE MENU TOGGLE */}
+              <button
+                id="mobile-menu-toggle"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden text-white hover:text-amber-400 transition-colors p-1"
+                aria-label="Toggle navigation menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
 
             </div>
 
           </div>
+
+          {/* MOBILE NAVIGATION DROPDOWN */}
+          {mobileMenuOpen && (
+            <nav
+              id="mobile-nav"
+              className="md:hidden border-t border-white/10 py-4 flex flex-col space-y-1 animate-fade-in"
+            >
+              <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white hover:text-amber-400 hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors text-left px-2 py-2.5 rounded-sm"
+              >
+                HOME
+              </button>
+              <button
+                onClick={() => {
+                  handleLinkClick("#strength-stats");
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white hover:text-amber-400 hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors text-left px-2 py-2.5 rounded-sm"
+              >
+                OUR TEAM
+              </button>
+              <button
+                onClick={() => {
+                  handleLinkClick("#success-story");
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white hover:text-amber-400 hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors text-left px-2 py-2.5 rounded-sm"
+              >
+                OUR JOURNEY
+              </button>
+              <button
+                onClick={() => {
+                  handleLinkClick("#about-founder");
+                  setMobileMenuOpen(false);
+                }}
+                className="text-white hover:text-amber-400 hover:bg-white/5 text-sm font-semibold tracking-wide transition-colors text-left px-2 py-2.5 rounded-sm"
+              >
+                ABOUT FOUNDER
+              </button>
+              <a
+                href="tel:+918296777056"
+                className="flex items-center gap-2 text-white hover:text-amber-400 text-sm font-semibold px-2 py-2.5"
+              >
+                <Phone className="w-4 h-4 text-amber-400" />
+                +91 82967 77056
+              </a>
+              <button
+                onClick={() => {
+                  openQuoteModal();
+                  setMobileMenuOpen(false);
+                }}
+                className="sm:hidden bg-[#d9a62e] text-[#111827] mt-2 mx-2 px-6 py-3 rounded-md text-sm font-bold tracking-wide hover:bg-amber-400 transition-all"
+              >
+                FREE CONSULTATION
+              </button>
+            </nav>
+          )}
+
         </div>
       </header>
     
@@ -544,12 +640,12 @@ const openQuoteModal = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Building Your Legacy with Excellence
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                Bengaluru's Trusted Construction Company for Vastu-Compliant Homes
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-100 max-w-2xl font-light leading-relaxed">
-                For over 9 years, RVM Constructions has been redefining the skyline. We translate your vision into a living, breathing space where memories are created through elite craftsmanship.
+                RVM Constructions is a premier construction company in Bengaluru with over 5+ years of experience delivering custom home construction, G+3 luxury residences, commercial buildings, interior design, and renovation services. We translate your vision into a living, breathing space where memories are created through elite, Vastu-compliant craftsmanship.
               </p>
 
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
@@ -618,27 +714,9 @@ const openQuoteModal = () => {
         </div>
       </section>
 
-      {/* PORTAL NOTICE FOR DYNAMIC DEMO */}
-      {/*<div className="bg-amber-50 border-y border-amber-200 py-3 text-center px-4">
-        <p className="text-sm text-amber-800 font-medium flex items-center justify-center flex-wrap gap-2">
-          <Info className="w-4 h-4 flex-shrink-0" />
-          <span>Interactive App Enabled: Use the top menu links to scroll or open the live quote generator form!</span>
-          <button 
-            onClick={openQuoteModal} 
-            className="underline hover:text-amber-900 font-bold ml-1 inline-flex items-center gap-1"
-          >
-            Try Calculator <Calculator className="w-3.5 h-3.5" />
-          </button>
-        </p>
-      </div>*/}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        
+        <section id="about-founder" ref={aboutFounderRef} ></section>        
         {/* Section Heading */}
         <div className="text-center mb-16">
           <h2 className="font-display font-bold text-lg text-rvm-gold tracking-widest uppercase pb-1 border-b border-rvm-gold/30 inline-block">
@@ -1000,80 +1078,6 @@ const openQuoteModal = () => {
 
         </div>
       </section>
-
-      {/* MOST TRUSTED PARTNERS */}
-      {/*<section
-        id="trusted-partners"
-        className="py-16 bg-slate-50 border-t border-b border-slate-100"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <p className="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
-            Most Trusted Partners
-          </p>
-
-         
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 items-center justify-items-center">
-            {[
-              { name: 'APEX STRUCTURES', symbol: '▲' },
-              { name: 'VERTEX GLASS', symbol: '◆' },
-              { name: 'ECOSTONE CEMENT', symbol: '◼' },
-              { name: 'IRONCLAD STEEL', symbol: '⬢' },
-              { name: 'LUMINA LIGHTING', symbol: '★' }
-            ].map((partner, index) => (
-              <div
-                key={index}
-                className="h-12 w-full max-w-[160px] bg-slate-200/60 rounded-sm hover:bg-slate-300/40 transition-colors flex items-center justify-center p-3 text-slate-500 hover:text-slate-800 cursor-pointer text-xs font-bold tracking-wider space-x-1.5 shadow-inner"
-              >
-                <span className="text-slate-400">{partner.symbol}</span>
-                <span>{partner.name}</span>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>*/}
-
-      {/* READY TO BUILD YOUR DREAM? (CTA SECTION) */}
-      {/*<section
-        id="ready-cta"
-        ref={ctaRef}
-        className="bg-[#dce4f4] text-slate-900 py-20 relative overflow-hidden"
-      >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#cbd5eb] rounded-full blur-3xl opacity-30"></div>
-        
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10 space-y-6">
-          
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#1c2230]">
-            Ready to Build Your Dream?
-          </h2>
-
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto font-light leading-relaxed">
-            Experience personalized, hassle-free construction with RVM Constructions. Let's create your legacy together.
-          </p>
-
-          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center pt-4">
-            <button
-              id="cta-btn-get-started"
-              onClick={openQuoteModal}
-              className="bg-[#111] text-white px-8 py-3.5 rounded-sm font-semibold hover:bg-amber-500 hover:text-black hover:scale-105 transition-all duration-300 shadow-lg"
-            >
-              Get Started Now
-            </button>
-            <button
-              id="cta-btn-support"
-              onClick={() => {
-                setSupportSent(false);
-                setSupportModalOpen(true);
-              }}
-              className="bg-white border border-slate-200 text-slate-800 px-8 py-3.5 rounded-sm font-semibold hover:bg-slate-50 transition-colors shadow-sm"
-            >
-              Contact Support
-            </button>
-          </div>
-
-        </div>
-      </section>*/}
 
       {/* FOOTER */}
       <footer className="bg-[#0c101b] text-white py-16 border-t border-white/5">
