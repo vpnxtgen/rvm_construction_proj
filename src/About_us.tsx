@@ -404,6 +404,17 @@ const openQuoteModal = () => {
     setSupportSent(true);
   };
 
+  const handleLinkClick = (selector: string, callback?: () => void) => {
+    if (callback) {
+      callback();
+    } else {
+      const element = document.querySelector(selector);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-amber-100 selection:text-amber-900 overflow-x-hidden">
     {/* Booking Model Call */}
@@ -418,36 +429,93 @@ const openQuoteModal = () => {
       />
        
       {/* HEADER / NAVIGATION */}
-      <header id="app-header" className="sticky top-0 z-40 w-full bg-white border-b border-slate-100 shadow-sm backdrop-blur-md bg-white/90 transition-all duration-300">
+      {/* HEADER / NAVIGATION */}
+      <header
+        id="app-header"
+        className="sticky top-0 z-40 w-full bg-[#0a1128]/95 border-b border-white/10 shadow-sm backdrop-blur-md"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="relative flex items-center justify-between h-20">
 
+            {/* LOGO - LEFT */}
             <div
-            id="logo"
-            className="flex items-center space-x-2 cursor-pointer"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            <header>
-              {/* 2. Use the variable inside curly braces */}
-              <img src={companyLogo} alt="Company Logo" width="150" height="100" />
-            </header>
-          </div>
-          
-            {/* Right Button (Always visible on mobile & desktop, no navigation tabs) */}
-          <div className="flex items-center">
+              id="logo"
+              className="flex items-center cursor-pointer flex-shrink-0"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <img
+                src={companyLogo}
+                alt="RVM Constructions"
+                width="150"
+                height="100"
+                className="object-contain"
+              />
+            </div>
+
+            {/* NAVIGATION - CENTER */}
+            <nav
+              id="desktop-nav"
+              className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-10"
+            >
+              {/* HOME */}
+              <button
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+              >
+                HOME
+              </button>
+
+              {/* OUR TEAM */}
+              <button
+                onClick={() => handleLinkClick("#strength-stats")}
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+              >
+                OUR TEAM
+              </button>
+
+              {/* OUR STORY */}
+              <button
+                onClick={() => handleLinkClick("#success-story")}
+                className="text-white hover:text-amber-400 text-sm font-semibold tracking-wide transition-colors"
+              >
+                OUR JOURNEY
+              </button>
+            </nav>
+
+            {/* RIGHT SIDE */}
+            <div className="flex items-center gap-6 ml-auto">
+
+              {/* PHONE */}
+              <a
+                href="tel:+918296777056"
+                className="hidden sm:flex items-center gap-2 text-white hover:text-amber-400 transition-colors"
+              >
+                <Phone className="w-5 h-5 text-amber-400" />
+                <span className="text-sm font-semibold">
+                  +91 82967 77056
+                </span>
+              </a>
+
+              {/* START BUILDING */}
               <button
                 id="header-btn-quote"
                 onClick={openQuoteModal}
-                className="bg-[#111] text-white px-5 py-2.5 rounded-sm text-xs sm:text-sm font-semibold hover:bg-amber-500 hover:text-[#111] transition-all duration-300 shadow-md flex items-center space-x-2"
+                className="bg-[#d9a62e] text-[#111827] px-6 py-3 rounded-md text-sm font-bold tracking-wide hover:bg-amber-400 transition-all duration-300 shadow-md"
               >
-                <Calculator className="w-4 h-4" />
-                <span>Get a Quote</span>
+                START BUILDING
               </button>
+
             </div>
 
           </div>
         </div>
       </header>
+    
       
 
       {/* HERO SECTION */}
