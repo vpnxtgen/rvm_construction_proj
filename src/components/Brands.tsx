@@ -5,7 +5,7 @@ interface BrandItem {
   name: string;
   tagline: string;
   badge: string;
-  svgIcon: React.ReactNode;
+  logoUrl: string;
 }
 
 export default function Brands() {
@@ -18,99 +18,44 @@ export default function Brands() {
       name: "UltraTech",
       tagline: "India's No. 1 Cement",
       badge: "CEMENT",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#FFB800]" fill="currentColor">
-          <path d="M50 5 L90 28 L90 72 L50 95 L10 72 L10 28 Z" fillOpacity="0.15" stroke="currentColor" strokeWidth="4" />
-          <path d="M30 40 L50 25 L70 40 L50 55 Z" />
-          <path d="M30 65 L50 50 L70 65 L50 80 Z" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2020/09/ultratech-cement-logo.png",
     },
     {
       name: "Adani ACC",
       tagline: "Cementing Trust",
       badge: "CONCRETE",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#E11D48]" fill="currentColor">
-          <rect x="15" y="15" width="70" height="70" rx="12" fillOpacity="0.1" stroke="currentColor" strokeWidth="4" />
-          <polygon points="50,25 75,65 25,65" />
-          <circle cx="50" cy="45" r="8" className="fill-white dark:fill-[#0B122C]" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2020/09/acc-limited-logo.png",
     },
     {
       name: "Asian Paints",
       tagline: "Inspiring Beautiful Homes",
       badge: "COATINGS",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#0ea5e9]" fill="currentColor">
-          <circle cx="50" cy="50" r="40" fillOpacity="0.15" stroke="currentColor" strokeWidth="4" />
-          <path d="M40 30 C 50 20, 60 20, 70 30 C 80 40, 80 50, 70 60 C 60 70, 40 70, 30 60 Z" />
-          <path d="M30 60 L15 85" stroke="currentColor" strokeWidth="6" strokeLinecap="round" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2023/05/asian-paints_logo-freelogovectors.net_.png",
     },
     {
       name: "Dulux",
       tagline: "Let's Colour Our World",
       badge: "FINISHES",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#8b5cf6]" fill="currentColor">
-          <circle cx="50" cy="50" r="40" fillOpacity="0.12" stroke="currentColor" strokeWidth="4" />
-          <path d="M25 50 C25 35, 75 35, 75 50 C75 65, 25 65, 25 50 Z" />
-          <path d="M35 50 Q 50 65, 65 50" fill="none" stroke="currentColor" strokeWidth="4" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2021/07/dulux-logo.png",
     },
     {
-      name: "Kajaria",
-      tagline: "India's No. 1 Tile Brand",
-      badge: "CERAMICS",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#14b8a6]" fill="currentColor">
-          <rect x="20" y="20" width="60" height="60" fillOpacity="0.15" stroke="currentColor" strokeWidth="4" />
-          <line x1="50" y1="20" x2="50" y2="80" stroke="currentColor" strokeWidth="3" />
-          <line x1="20" y1="50" x2="80" y2="50" stroke="currentColor" strokeWidth="3" />
-          <rect x="30" y="30" width="12" height="12" />
-          <rect x="58" y="58" width="12" height="12" />
-        </svg>
-      )
-    },
-    {
-      name: "Tata Tiscon",
+      name: "Tata Steel",
       tagline: "Joy of Building Steel",
       badge: "REBAR STEEL",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#3b82f6]" fill="currentColor">
-          <rect x="15" y="15" width="70" height="70" rx="8" fillOpacity="0.1" stroke="currentColor" strokeWidth="4" />
-          <line x1="30" y1="25" x2="70" y2="75" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
-          <line x1="40" y1="20" x2="80" y2="70" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
-          <line x1="20" y1="30" x2="60" y2="80" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2020/09/tata_steel_logo.png",
     },
     {
       name: "Birla White",
       tagline: "The Whitest White",
       badge: "WALL CARE",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#eab308]" fill="currentColor">
-          <polygon points="50,15 85,80 15,80" fillOpacity="0.15" stroke="currentColor" strokeWidth="4" />
-          <polygon points="50,35 70,75 30,75" />
-        </svg>
-      )
+      logoUrl: "https://www.freelogovectors.net/wp-content/uploads/2020/09/ultratech-cement-logo.png",
     },
     {
       name: "Jaquar",
       tagline: "Luxury Bath Fittings",
       badge: "FITTINGS",
-      svgIcon: (
-        <svg viewBox="0 0 100 100" className="w-12 h-12 text-[#f97316]" fill="currentColor">
-          <circle cx="50" cy="50" r="40" fillOpacity="0.1" stroke="currentColor" strokeWidth="4" />
-          <path d="M50 20 C65 45, 75 60, 70 75 C65 85, 35 85, 30 75 C25 60, 35 45, 50 20 Z" />
-        </svg>
-      )
-    }
+      logoUrl: "https://cdn.brandfetch.io/idP20HEYHh/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B",
+    },
   ];
 
   // Dynamic items per view on resize
@@ -191,11 +136,16 @@ export default function Brands() {
                 <div 
                   key={index} 
                   style={{ width: `calc(${100 / itemsPerView}% - ${(6 * (itemsPerView - 1)) / itemsPerView}px)` }}
-                  className="shrink-0 flex flex-col bg-white dark:bg-[#0B122C] border border-gray-100 dark:border-white/5 py-8 px-5 rounded-lg items-center text-center justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-64 xl:h-72"
+                  className="shrink-0 flex flex-col bg-white dark:bg-[#0B122C] border border-gray-100 dark:border-white/5 py-8 px-5 rounded-lg items-center text-center justify-between shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-72 xl:h-80"
                 >
                   {/* Brand Logo Container */}
-                  <div className="p-3 bg-gray-50 dark:bg-white/5 rounded-full mb-3 flex items-center justify-center transition-transform duration-300 hover:scale-110">
-                    {brand.svgIcon}
+                  <div className="w-28 h-28 xl:w-32 xl:h-32 p-2 bg-gray-50 dark:bg-white/5 rounded-full mb-3 flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                    <img
+                      src={brand.logoUrl}
+                      alt={`${brand.name} logo`}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
                   </div>
 
                   {/* Brand Info */}
