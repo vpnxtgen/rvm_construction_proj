@@ -111,15 +111,15 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
             <div className="hidden xl:flex items-center gap-6 pt-6 border-t border-white/10 mt-3">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-rvm-gold" />
-                <span className="text-xs text-gray-300 font-medium">Licensed & Insured Builders</span>
+                <span className="text-xs text-gray-200 font-medium">Licensed & Insured Builders</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-rvm-gold" />
-                <span className="text-xs text-gray-300 font-medium">Transparent Fixed Pricing</span>
+                <span className="text-xs text-gray-200 font-medium">Transparent Fixed Pricing</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-rvm-gold" />
-                <span className="text-xs text-gray-300 font-medium">On-Site Quality Audits</span>
+                <span className="text-xs text-gray-200 font-medium">On-Site Quality Audits</span>
               </div>
             </div>
           </div>

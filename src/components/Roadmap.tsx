@@ -70,7 +70,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "Enquire and schedule an appointment with our experts to discuss your requirements. Through calls and meetings, our technical sales executives will ensure that no detail is overlooked as we kick off your project with an estimated quote.",
       imgUrl: step1,
       fallbackUrl: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80",
-      icon: <Building2 className="h-5 w-5 text-emerald-500" />,
+      icon: <Building2 className="h-5 w-5 text-amber-500" />,
       features: [
         "Schedule a free consultation call",
         "Discuss project requirements in detail",
@@ -86,7 +86,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "Our design team works closely with you to develop detailed specifications and blueprints tailored to your vision. We consider every aspect — layout, materials, aesthetics, and functionality — to create a comprehensive plan.",
       imgUrl: step2,
       fallbackUrl: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80",
-      icon: <Compass className="h-5 w-5 text-emerald-500" />,
+      icon: <Compass className="h-5 w-5 text-amber-500" />,
       features: [
         "Architectural drawings & 3D renderings",
         "Material and finish selection",
@@ -102,7 +102,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "Once the design is finalised and the quote approved, we formalise our partnership with a clear and transparent contract. All scope, timelines, payment schedules, and deliverables are documented so both parties are fully aligned.",
       imgUrl: step3,
       fallbackUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80",
-      icon: <FileText className="h-5 w-5 text-emerald-500" />,
+      icon: <FileText className="h-5 w-5 text-amber-500" />,
       features: [
         "Detailed project scope & timeline",
         "Transparent payment structure",
@@ -118,7 +118,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "Our skilled construction team brings your design to life with precision and quality craftsmanship. Throughout the build, you receive regular progress updates and reports, ensuring complete transparency at every stage.",
       imgUrl: step4,
       fallbackUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80",
-      icon: <Hammer className="h-5 w-5 text-emerald-500" />,
+      icon: <Hammer className="h-5 w-5 text-amber-500" />,
       features: [
         "Certified, experienced builders on site",
         "Regular progress photo & video updates",
@@ -134,7 +134,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "We encourage scheduled site visits so you can see your project take shape in person. Walk the site with our team, review progress against the plan, and raise any questions before the next milestone begins.",
       imgUrl: step5,
       fallbackUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80",
-      icon: <Eye className="h-5 w-5 text-emerald-500" />,
+      icon: <Eye className="h-5 w-5 text-amber-500" />,
       features: [
         "Scheduled walkthroughs with the site team",
         "On-site review of progress & quality",
@@ -150,7 +150,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
       description: "The ultimate project handover marks the successful completion of your home construction journey with us and is ready for the transition of the fully finished property to your joy.",
       imgUrl: step6,
       fallbackUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80",
-      icon: <Gift className="h-5 w-5 text-emerald-500" />,
+      icon: <Gift className="h-5 w-5 text-amber-500" />,
       features: [
         "Final inspection & quality sign-off",
         "Full documentation & warranties handed over",
@@ -225,17 +225,17 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
   return (
     <section id="roadmap-section" className="py-16 xl:py-20 bg-white dark:bg-[#0B122C] relative overflow-hidden transition-colors duration-300">
       {/* Decorative radial gradients matching raw HTML style */}
-      <div className="absolute -top-[120px] -right-[120px] w-[400px] height-[400px] bg-gradient-radial from-emerald-500/5 to-transparent rounded-full pointer-events-none"></div>
+      <div className="absolute -top-[120px] -right-[120px] w-[400px] height-[400px] bg-gradient-radial from-amber-500/5 to-transparent rounded-full pointer-events-none"></div>
       <div className="absolute -bottom-[80px] -left-[80px] w-[300px] height-[300px] bg-gradient-radial from-[#0a2463]/5 to-transparent rounded-full pointer-events-none"></div>
 
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
 
         {/* Section Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-emerald-600 uppercase mb-2">
-            <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
+          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-amber-600 uppercase mb-2">
+            <span className="inline-block w-7 h-[1.5px] bg-amber-500 rounded-sm"></span>
             <span>How It Works</span>
-            <span className="inline-block w-7 h-[1.5px] bg-emerald-500 rounded-sm"></span>
+            <span className="inline-block w-7 h-[1.5px] bg-amber-500 rounded-sm"></span>
           </div>
           <h2 className="font-display font-bold text-2xl sm:text-3xl xl:text-4xl text-[#0a1f44] dark:text-white tracking-tight leading-tight uppercase">
             Our Proven House Construction Process
@@ -265,14 +265,14 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                   }}
                   className={`flex items-center gap-3 shrink-0 lg:w-full text-left px-3 py-2.5 lg:pl-5 rounded-xl lg:rounded-none transition-all cursor-pointer relative ${
                     isActive
-                      ? "bg-emerald-50 dark:bg-emerald-500/10 lg:bg-transparent lg:before:absolute lg:before:left-[-1px] lg:before:top-0 lg:before:bottom-0 lg:before:w-[3px] lg:before:bg-emerald-500"
+                      ? "bg-amber-50 dark:bg-amber-500/10 lg:bg-transparent lg:before:absolute lg:before:left-[-1px] lg:before:top-0 lg:before:bottom-0 lg:before:w-[3px] lg:before:bg-amber-500"
                       : "hover:bg-gray-50 dark:hover:bg-white/5"
                   }`}
                   role="tab"
                   aria-selected={isActive}
                 >
                   <div className={`w-9 h-9 xl:w-10 xl:h-10 rounded-full flex items-center justify-center overflow-hidden shadow-md shrink-0 transition-all ${
-                    isActive ? "ring-2 ring-emerald-500/50 scale-105" : ""
+                    isActive ? "ring-2 ring-amber-500/50 scale-105" : ""
                   }`}>
                     <img
                       src={step.imgUrl}
@@ -286,13 +286,13 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
 
                   <div className="flex flex-col min-w-0">
                     <span className={`text-[9px] font-bold tracking-wider ${
-                      isActive ? "text-emerald-500" : "text-gray-400"
+                      isActive ? "text-amber-500" : "text-gray-400"
                     }`}>
                       {step.number}
                     </span>
                     <span className={`text-xs leading-tight whitespace-nowrap lg:whitespace-normal ${
                       isActive
-                        ? "text-emerald-600 dark:text-emerald-400 font-semibold"
+                        ? "text-amber-600 dark:text-amber-400 font-semibold"
                         : "text-gray-600 dark:text-gray-400 font-medium"
                     }`}>
                       {step.label}
@@ -329,7 +329,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
 
                 {/* Badge Overlay */}
                 <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 bg-white/15 border border-white/20 backdrop-blur-md rounded-full px-3 py-1 text-[10px] text-white font-semibold">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-400" />
                   <span>{activeStep.badge}</span>
                 </div>
               </div>
@@ -337,8 +337,8 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
 
             {/* Right panel Body */}
             <div className="space-y-3 xl:space-y-4">
-              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-emerald-600 uppercase">
-                <span className="inline-block w-5 h-[1.5px] bg-emerald-500 rounded-sm"></span>
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-amber-600 uppercase">
+                <span className="inline-block w-5 h-[1.5px] bg-amber-500 rounded-sm"></span>
                 <span>{activeStep.stepName}</span>
               </div>
 
@@ -353,7 +353,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
               <ul className="space-y-2">
                 {activeStep.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-medium">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-amber-500 shrink-0" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -364,7 +364,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 {activeTab > 0 && (
                   <button
                     onClick={handlePrev}
-                    className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-emerald-500 hover:text-emerald-500 px-5 py-2 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 border border-gray-200 dark:border-white/10 hover:border-amber-500 hover:text-amber-500 px-5 py-2 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all cursor-pointer"
                   >
                     <ArrowLeft className="h-4 w-4" />
                     <span>Previous</span>
@@ -374,7 +374,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 {activeTab < steps.length - 1 ? (
                   <button
                     onClick={handleNext}
-                    className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-emerald-500 hover:translate-x-1 text-white px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 bg-[#0a2463] hover:bg-amber-500 hover:translate-x-1 text-white px-5 py-2 rounded-full text-xs font-semibold transition-all cursor-pointer"
                   >
                     <span>Next Step</span>
                     <ArrowRight className="h-4 w-4" />
@@ -382,7 +382,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 ) : (
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
+                    className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-6 py-2.5 rounded-full text-xs font-bold transition-all cursor-pointer uppercase tracking-wider"
                   >
                     <span>Get A Quote</span>
                     <ArrowRight className="h-4 w-4" />
@@ -412,7 +412,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold cursor-pointer z-20 flex items-center justify-center transition-colors shadow-md"
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold cursor-pointer z-20 flex items-center justify-center transition-colors shadow-md"
             >
               <X className="h-4 w-4" />
             </button>
@@ -422,16 +422,16 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
                 alt="RVM Constructions"
-                className="w-32 h-32 object-cover rounded-lg mb-6 border-2 border-emerald-500/30"
+                className="w-32 h-32 object-cover rounded-lg mb-6 border-2 border-amber-500/30"
               />
               <div className="space-y-1">
-                <p className="font-display font-black text-6xl text-emerald-400 tracking-tight leading-none">
+                <p className="font-display font-black text-6xl text-amber-400 tracking-tight leading-none">
                   5
                 </p>
-                <p className="text-xs text-emerald-400 font-light italic uppercase tracking-widest">
+                <p className="text-xs text-amber-400 font-light italic uppercase tracking-widest">
                   Years of
                 </p>
-                <h4 className="font-display font-bold text-lg text-emerald-400">
+                <h4 className="font-display font-bold text-lg text-amber-400">
                   RVM Constructions™
                 </h4>
                 <p className="text-[10px] text-gray-400 font-light italic mt-4 tracking-wider">
@@ -445,7 +445,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
               <h3 className="font-display font-bold text-xl sm:text-2xl text-[#0a1f44] tracking-tight leading-tight">
                 Stop Dreaming and Start Building.
               </h3>
-              <p className="text-emerald-500 text-sm font-semibold mt-1 mb-6">
+              <p className="text-amber-500 text-sm font-semibold mt-1 mb-6">
                 Contact Us Today!
               </p>
 
@@ -468,7 +468,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Your full name"
-                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-800 focus:border-b-2 focus:border-emerald-600 outline-none bg-transparent transition-all"
+                    className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-800 focus:border-b-2 focus:border-amber-600 outline-none bg-transparent transition-all"
                   />
                 </div>
 
@@ -477,7 +477,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                   <label className="text-xs font-semibold text-[#0a1f44] block">
                     Phone No <span className="text-red-500">*</span>
                   </label>
-                  <div className="flex items-center border-b border-emerald-500">
+                  <div className="flex items-center border-b border-amber-500">
                     <span className="text-xs sm:text-sm text-gray-600 pr-2 pb-1 font-medium flex items-center gap-1">
                       🇮🇳 +91
                     </span>
@@ -504,7 +504,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                       required
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                      className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
                     >
                       <option value="">--Select Location--</option>
                       <option value="Bengaluru">Bengaluru</option>
@@ -520,7 +520,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                       required
                       value={constructionType}
                       onChange={(e) => setConstructionType(e.target.value)}
-                      className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                      className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
                     >
                       <option value="">--Select Construction Type--</option>
                       <option value="New Construction">New Construction</option>
@@ -539,7 +539,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                       required
                       value={plotSize}
                       onChange={(e) => setPlotSize(e.target.value)}
-                      className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                      className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
                     >
                       <option value="">--Select Plot Size--</option>
                       <option value="Below 1000 sq ft">Below 1000 sq ft</option>
@@ -559,7 +559,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                       required
                       value={floors}
                       onChange={(e) => setFloors(e.target.value)}
-                      className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                      className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
                     >
                       <option value="">--Select Number of Floors--</option>
                       <option value="Ground Floor (G)">Ground Floor (G)</option>
@@ -580,7 +580,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     required
                     value={budget}
                     onChange={(e) => setBudget(e.target.value)}
-                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                    className="w-full border-b border-amber-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
                   >
                     <option value="">--Select Approximate Budget--</option>
                     <option value="Below ₹20 Lakhs">Below ₹20 Lakhs</option>
@@ -603,7 +603,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     onChange={(e) => setRequirements(e.target.value)}
                     placeholder="Minimum 3 Characters detailing requirements..."
                     rows={2}
-                    className="w-full border-b border-emerald-500 py-1 text-xs sm:text-sm text-gray-800 outline-none resize-none bg-transparent font-sans"
+                    className="w-full border-b border-amber-500 py-1 text-xs sm:text-sm text-gray-800 outline-none resize-none bg-transparent font-sans"
                   />
                 </div>
 
@@ -614,7 +614,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                     id="ws-consent"
                     checked={consent}
                     onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-0.5 shrink-0 accent-emerald-500 h-4 w-4 rounded cursor-pointer"
+                    className="mt-0.5 shrink-0 accent-amber-500 h-4 w-4 rounded cursor-pointer"
                   />
                   <label htmlFor="ws-consent" className="text-[10px] sm:text-xs text-gray-500 leading-relaxed cursor-pointer select-none">
                     I authorize RVM Constructions & its representatives to contact me with updates and notifications via Email/SMS/WhatsApp/Call. This will override DND/NDNC settings.
@@ -625,7 +625,7 @@ export default function Roadmap({ onSuccessSubmit }: RoadmapProps) {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase"
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase"
                   >
                     Submit Request
                   </button>
