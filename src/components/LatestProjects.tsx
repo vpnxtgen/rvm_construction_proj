@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import project1Image  from "../assets/images/project_1.png";
 import project2Image  from "../assets/images/project_2.png";
-
+import project3Image  from "../assets/images/RVM_Proj_3.png";
 interface ProjectItem {
   id: number;
   title: string;
@@ -32,16 +32,9 @@ export default function LatestProjects() {
     },
     {
       id: 3,
-      title: "Minimalist Brick Tower",
+      title: "RVM luxury g+3 Standard alone home",
       location: "Bengaluru, India",
-      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80",
-      status: "Completed"
-    },
-    {
-      id: 4,
-      title: "Premium Luxury Villa",
-      location: "Tumkur, India",
-      image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=80",
+      image:project3Image,
       status: "Completed"
     }
   ];
