@@ -138,7 +138,7 @@ export default function Header({
               onClick={onStartBuildingClick}
               className="bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] text-xs font-semibold tracking-wider px-4 py-2 rounded-sm transition-all duration-200 uppercase"
             >
-              START BUILDING
+              FREE CONSULTATION
             </button>
           </div>
 
