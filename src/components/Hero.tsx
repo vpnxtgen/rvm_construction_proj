@@ -50,7 +50,7 @@ export default function Hero({ onSuccessSubmit, onContactClick }: HeroProps) {
       <div className="absolute inset-0 z-0">
         <img
           src="/src/assets/images/rvm_hero_house_1783953334166.jpg"
-          alt="RVM Constructions - custom home and luxury villa construction company showcasing premium residential building craftsmanship"
+          alt=""
           className="w-full h-full object-cover object-center opacity-40 select-none"
           referrerPolicy="no-referrer"
         />
