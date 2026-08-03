@@ -6,7 +6,7 @@ export default function MediaAndTestimonials() {
     <section id="media-testimonials-section" className="bg-[#FAF8F5] py-20 xl:py-28">
       
       {/* Media Logo bar */}
-      <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pb-16 border-b border-gray-200">
+      { /*<div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pb-16 border-b border-gray-200">
         <p className="font-sans font-semibold text-[10px] tracking-widest text-center text-gray-400 uppercase mb-8">
           FEATURED IN MEDIA
         </p>
@@ -20,7 +20,7 @@ export default function MediaAndTestimonials() {
             </span>
           ))}
         </div>
-      </div>
+      </div>*/}
 
       {/* Testimonials */}
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-16 2xl:px-24 pt-20">
