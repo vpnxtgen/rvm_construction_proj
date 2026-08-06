@@ -1,4 +1,6 @@
 import React from "react";
+import customFurtinuredesign    from "../assets/images/customfurtinuredesign.png";
+import customInteriorDesignService    from "../assets/images/customInteriorDesignService.png";
 
 interface ServiceItem {
   title: string;
@@ -24,10 +26,22 @@ export default function Services() {
       fallback: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80"
     },
     {
-      title: "Interior Design",
+      title: "Interior Design Services",
+      description: "Thoughtfully designed interiors that combine timeless aesthetics with modern functionality.",
+      image: customInteriorDesignService,
+      fallback: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Resdential Interior Design",
       description: "Transform your living and working spaces with innovative interior design solutions that blend style, comfort, and practicality.",
       image: "/src/assets/images/interior_design_luxury_1783993803474.jpg",
       fallback: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      title: "Custom Functional Furniture",
+      description: "Transform your living and workspaces with innovative interior design solutions that seamlessly blend style, comfort, and functionality.",
+      image: customFurtinuredesign,
+      fallback: "https://www.istockphoto.com/photo/vintage-cozy-living-room-interior-with-yellow-sofa-white-wood-panelling-and-green-gm2201897278-619529170?searchscope=image%2Cfilm"
     },
     {
       title: "Renovation Services",
