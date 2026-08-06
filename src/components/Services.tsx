@@ -1,6 +1,7 @@
 import React from "react";
 import customFurtinuredesign    from "../assets/images/customfurtinuredesign.png";
 import customInteriorDesignService    from "../assets/images/customInteriorDesignService.png";
+import restortationbeforeAndAfter    from "../assets/images/renovation_before_after_1783993818914.jpg";
 
 interface ServiceItem {
   title: string;
@@ -46,7 +47,7 @@ export default function Services() {
     {
       title: "Renovation Services",
       description: "Upgrade and revitalize existing properties with our comprehensive renovation and remodeling services.",
-      image: "/src/assets/images/renovation_before_after_1783993818914.jpg",
+      image: restortationbeforeAndAfter,
       fallback: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80",
       isBeforeAfter: true
     }
