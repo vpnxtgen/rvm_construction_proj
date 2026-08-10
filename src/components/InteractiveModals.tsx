@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, CheckCircle, Calculator, Download, Check, Calendar } from "lucide-react";
 import { Package, RoadmapStep } from "../data";
+const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY;
+const API_URL = process.env.REACT_APP_API_URL;
 
 interface ModalProps {
   isOpen: boolean;
@@ -13,7 +15,7 @@ interface SuccessModalProps extends ModalProps {
 }
 
 export function SuccessModal({ isOpen, onClose, details }: SuccessModalProps) {
-    
+
   if (!isOpen || !details) return null;
 
   return (
@@ -235,17 +237,17 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
         setFormError("You must consent to receive communications to proceed");
         return;
       }
-  
+
       setFormError("");
       setIsModalOpen(false);
-  
+
       // Call success handler
       onSuccessSubmit({
         name,
         phone: `+91 ${phone}`,
         location: `${location} (${constructionType}, ${plotSize || "Standard"} plot, ${floors || "G"} Floors, Est Budget: ${budget || "Flexible"})`
       });
-  
+
       // Reset Quote fields
       setName("");
       setPhone("");
@@ -294,7 +296,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in">
       <div>
         <div className="bg-white rounded-2xl overflow-hidden shadow-2xl relative max-w-4xl w-full flex flex-col md:flex-row max-h-[90vh] my-8">
-            
+
             {/* Close Button */}
              <button
                 onClick={onClose}
@@ -342,7 +344,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                
+
                 {/* Name */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-[#0a1f44] block">
@@ -527,7 +529,6 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
 }
 
 // 4. Quote Request Modal ("Stop Dreaming and Start Building")
-// 4. Quote Request Modal ("Stop Dreaming and Start Building")
 interface QuoteModalProps extends ModalProps {
   onSuccessSubmit: (details: { name: string; phone: string; location: string }) => void;
 }
@@ -543,6 +544,21 @@ export function QuoteModal({ isOpen, onClose, onSuccessSubmit }: QuoteModalProps
   const [requirements, setRequirements] = useState("");
   const [consent, setConsent] = useState(true);
   const [formError, setFormError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
+
+  // Render the Turnstile widget once, after Cloudflare's script has loaded.
+  // This hook must run on every render regardless of isOpen, so it stays
+  // above the early-return below (Rules of Hooks).
+  useEffect(() => {
+    if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+      });
+    }
+  }, []);
 
   if (!isOpen) return null;
 
@@ -559,9 +575,13 @@ export function QuoteModal({ isOpen, onClose, onSuccessSubmit }: QuoteModalProps
     setFormError("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!consent) {
+      setFormError("Please provide consent to be contacted before submitting.");
+      return;
+    }
     if (!name.trim()) {
       setFormError("Please enter your name");
       return;
@@ -595,15 +615,55 @@ export function QuoteModal({ isOpen, onClose, onSuccessSubmit }: QuoteModalProps
       return;
     }
 
-    setFormError("");
-    onClose();
-    onSuccessSubmit({
-      name,
-      phone,
-      location: `${location} (${constructionType}, ${plotSize}, ${floors}, Budget: ${budget})`
-    });
+    const turnstileToken = window.turnstile?.getResponse(widgetIdRef.current);
+    if (!turnstileToken) {
+      setFormError("Please complete the verification check before submitting.");
+      return;
+    }
 
-    resetForm();
+    setSubmitting(true);
+    setFormError("");
+
+    try {
+      const res = await fetch(`${API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          location,
+          constructionType,
+          plotSize,
+          floors,
+          budget,
+          requirements,
+          turnstileToken,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setFormError(data.message || "Something went wrong. Please try again.");
+        window.turnstile?.reset(widgetIdRef.current);
+        return;
+      }
+
+      onSuccessSubmit({
+        name,
+        phone,
+        location: `${location} (${constructionType}, ${plotSize}, ${floors}, Budget: ${budget})`,
+      });
+
+      resetForm();
+      onClose();
+    } catch (err) {
+      console.error("Lead submission error:", err);
+      setFormError("Network error. Please check your connection and try again.");
+      window.turnstile?.reset(widgetIdRef.current);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -810,6 +870,7 @@ export function QuoteModal({ isOpen, onClose, onSuccessSubmit }: QuoteModalProps
                 onChange={(e) => setRequirements(e.target.value)}
                 placeholder="Minimum 3 Characters detailing requirements..."
                 rows={2}
+                minLength={3}
                 className="w-full border-b border-emerald-500 py-1 text-xs sm:text-sm text-gray-800 outline-none resize-none bg-transparent font-sans"
               />
             </div>
@@ -828,13 +889,17 @@ export function QuoteModal({ isOpen, onClose, onSuccessSubmit }: QuoteModalProps
               </label>
             </div>
 
+            {/* Turnstile widget */}
+            <div ref={turnstileRef}></div>
+
             {/* Submit button */}
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase"
+                disabled={submitting}
+                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Request
+                {submitting ? "Submitting..." : "Submit Request"}
               </button>
             </div>
 
@@ -1037,121 +1102,3 @@ export function PortfolioModal({ isOpen, onClose }: ModalProps) {
     </div>
   );
 }
-
-
-
-/*<div className="space-y-6">
-          <div className="border-b border-white/5 pb-4">
-            <span className="bg-rvm-gold/15 border border-rvm-gold/30 text-rvm-gold text-[10px] font-bold px-2.5 py-1 rounded-sm uppercase tracking-wider">
-              {pkg.name} Package Selector
-            </span>
-            <h3 className="font-display font-bold text-2xl text-white tracking-wide mt-3">
-              Configure Your Estimate
-            </h3>
-          </div>
-
-          <div className="bg-[#0B122C] border border-white/5 p-5 rounded-sm space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-400 font-medium flex items-center gap-1.5 uppercase tracking-wide">
-                <Calculator className="h-4 w-4 text-rvm-gold" />
-                BUILT-UP AREA CALCULATOR
-              </span>
-              <span className="font-display font-bold text-sm text-rvm-gold">
-                {pkg.price} / sqft
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs">
-                <span>Plot / Carpet Builtup Area:</span>
-                <span className="font-semibold text-white">{area} SQFT</span>
-              </div>
-              <input
-                type="range"
-                min={800}
-                max={6000}
-                step={50}
-                value={area}
-                onChange={(e) => setArea(Number(e.target.value))}
-                className="w-full accent-rvm-gold h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-gray-500 font-light">
-                <span>800 sqft</span>
-                <span>3,000 sqft</span>
-                <span>6,000 sqft</span>
-              </div>
-            </div>
-
-            <div className="bg-white/5 p-4 rounded-sm flex justify-between items-center border-l-2 border-rvm-gold">
-              <div>
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-medium">ESTIMATED TOTAL BUILDING COST</p>
-                <p className="text-xs text-gray-500 font-light mt-0.5">Civil structures, basics, standard finishing *</p>
-              </div>
-              <div className="text-right">
-                <p className="font-display font-bold text-2xl text-white tracking-tight">
-                  ₹{estimatedCost.toLocaleString("en-IN")}
-                </p>
-                <p className="text-[10px] text-rvm-gold font-light mt-0.5">Turnkey project cost</p>
-              </div>
-            </div>
-          </div>
-
-          <form onSubmit={handleBookingSubmit} className="space-y-4">
-            <h4 className="font-display font-bold text-xs text-white uppercase tracking-wider">
-              Reserve This Package Rate & Consultation
-            </h4>
-
-            {errorMsg && (
-              <div className="p-3 bg-red-900/40 border border-red-500/50 rounded-sm text-xs text-red-200">
-                {errorMsg}
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="YOUR NAME *"
-                value={bookName}
-                onChange={(e) => {
-                  setBookName(e.target.value);
-                  if (errorMsg) setErrorMsg("");
-                }}
-                className="bg-white/5 border border-white/10 focus:border-rvm-gold rounded-sm px-4 py-3 text-xs sm:text-sm text-white placeholder-gray-400 outline-none transition-all"
-              />
-              <input
-                type="tel"
-                placeholder="PHONE NUMBER *"
-                value={bookPhone}
-                onChange={(e) => {
-                  setBookPhone(e.target.value.replace(/\D/g, ""));
-                  if (errorMsg) setErrorMsg("");
-                }}
-                maxLength={15}
-                className="bg-white/5 border border-white/10 focus:border-rvm-gold rounded-sm px-4 py-3 text-xs sm:text-sm text-white placeholder-gray-400 outline-none transition-all"
-              />
-            </div>
-
-            <div>
-              <select
-                value={bookLocation}
-                onChange={(e) => {
-                  setBookLocation(e.target.value);
-                  if (errorMsg) setErrorMsg("");
-                }}
-                className="w-full bg-[#111A3E] border border-white/10 focus:border-rvm-gold rounded-sm px-4 py-3 text-xs sm:text-sm text-white outline-none cursor-pointer appearance-none"
-              >
-                <option value="" disabled>SELECT TARGET CITY *</option>
-                <option value="Bengaluru">Bengaluru Hub (H.O)</option>
-              </select>
-            </div>
-
-            <div className="flex items-center space-x-2 pt-2">
-              <button
-                type="submit"
-                className="w-full bg-rvm-gold hover:bg-rvm-gold-hover text-[#0B122C] py-3 rounded-sm font-bold text-xs tracking-widest uppercase transition-all duration-300"
-              >
-                PROCEED WITH RVM ESTIMATION
-              </button>
-            </div>
-          </form>
-        </div>*/
