@@ -217,7 +217,12 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
         sitekey: TURNSTILE_SITE_KEY,
       });
     }
-  }, []);
+    // Added: clean up when the modal closes so it re-renders next open
+    if (!isOpen && widgetIdRef.current) {
+      window.turnstile?.remove(widgetIdRef.current);
+      widgetIdRef.current = null;
+    }
+  }, [isOpen]);
 
   if (!isOpen || !pkg) return null;
 
