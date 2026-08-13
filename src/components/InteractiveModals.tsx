@@ -196,6 +196,10 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   const [bookLocation, setBookLocation] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // --- Added for lead push endpoint ---
+  const [submitting, setSubmitting] = useState(false);
+  const turnstileRef = useRef(null);
+  const widgetIdRef = useRef(null);
 
   useEffect(() => {
     if (pkg) {
@@ -204,6 +208,17 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
     }
   }, [pkg]);
 
+  // Render the Turnstile widget once, after Cloudflare's script has loaded.
+  // Runs on every render regardless of isOpen, so it stays above the
+  // early-return below (Rules of Hooks).
+  useEffect(() => {
+    if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
+      widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+      });
+    }
+  }, []);
+
   if (!isOpen || !pkg) return null;
 
   // Clean raw price (e.g. ₹1,899 -> 1899)
@@ -211,7 +226,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   const estimatedCost = area * pricePerSqft;
 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       if (!name.trim()) {
         setFormError("Please enter your name");
@@ -238,26 +253,69 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
         return;
       }
 
+      // --- Added: Turnstile check before hitting the API ---
+      const turnstileToken = window.turnstile?.getResponse(widgetIdRef.current);
+      if (!turnstileToken) {
+        setFormError("Please complete the verification check before submitting.");
+        return;
+      }
+
       setFormError("");
-      setIsModalOpen(false);
+      setSubmitting(true);
 
-      // Call success handler
-      onSuccessSubmit({
-        name,
-        phone: `+91 ${phone}`,
-        location: `${location} (${constructionType}, ${plotSize || "Standard"} plot, ${floors || "G"} Floors, Est Budget: ${budget || "Flexible"})`
-      });
+      // --- Added: push lead to backend, same as QuoteModal ---
+      try {
+        const res = await fetch(`${API_URL}/api/leads`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            phone,
+            location,
+            constructionType,
+            plotSize,
+            floors,
+            budget,
+            requirements,
+            turnstileToken,
+          }),
+        });
 
-      // Reset Quote fields
-      setName("");
-      setPhone("");
-      setLocation("");
-      setConstructionType("");
-      setPlotSize("");
-      setFloors("");
-      setBudget("");
-      setRequirements("");
-      setConsent(true);
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          setFormError(data.message || "Something went wrong. Please try again.");
+          window.turnstile?.reset(widgetIdRef.current);
+          setSubmitting(false);
+          return;
+        }
+
+        setIsModalOpen(false);
+
+        // Call success handler
+        onSuccessSubmit({
+          name,
+          phone: `+91 ${phone}`,
+          location: `${location} (${constructionType}, ${plotSize || "Standard"} plot, ${floors || "G"} Floors, Est Budget: ${budget || "Flexible"})`
+        });
+
+        // Reset Quote fields
+        setName("");
+        setPhone("");
+        setLocation("");
+        setConstructionType("");
+        setPlotSize("");
+        setFloors("");
+        setBudget("");
+        setRequirements("");
+        setConsent(true);
+      } catch (err) {
+        console.error("Lead submission error:", err);
+        setFormError("Network error. Please check your connection and try again.");
+        window.turnstile?.reset(widgetIdRef.current);
+      } finally {
+        setSubmitting(false);
+      }
     };
 
   const handleBookingSubmit = (e: React.FormEvent) => {
@@ -509,13 +567,17 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
                   </label>
                 </div>
 
+                {/* Turnstile widget — Added */}
+                <div ref={turnstileRef}></div>
+
                 {/* Submit button */}
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase"
+                    disabled={submitting}
+                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Submit Request
+                    {submitting ? "Submitting..." : "Submit Request"}
                   </button>
                 </div>
 
