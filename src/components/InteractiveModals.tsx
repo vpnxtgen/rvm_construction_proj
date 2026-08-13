@@ -212,7 +212,6 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   // Runs on every render regardless of isOpen, so it stays above the
   // early-return below (Rules of Hooks).
   useEffect(() => {
-    console.log('TURNSTILE_SITE_KEY******************',TURNSTILE_SITE_KEY);
     if (window.turnstile && turnstileRef.current && !widgetIdRef.current) {
       widgetIdRef.current = window.turnstile.render(turnstileRef.current, {
         sitekey: TURNSTILE_SITE_KEY,
