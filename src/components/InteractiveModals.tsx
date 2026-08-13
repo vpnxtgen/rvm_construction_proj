@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { X, CheckCircle, Calculator, Download, Check, Calendar } from "lucide-react";
 import { Package, RoadmapStep } from "../data";
-const TURNSTILE_SITE_KEY = process.env.TURNKEY;
-const API_URL = process.env.APP_WRITE_END_POINT;
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface ModalProps {
   isOpen: boolean;
