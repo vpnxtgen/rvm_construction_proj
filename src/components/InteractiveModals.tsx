@@ -171,6 +171,7 @@ export function StepModal({ isOpen, onClose, step }: StepModalProps) {
 }
 
 // 3. Calculator and Booking Modal (Choose Plan)
+// 3. Calculator and Booking Modal (Choose Plan)
 interface BookingModalProps extends ModalProps {
   pkg: Package | null;
   onSuccessSubmit: (details: { name: string; phone: string; location: string }) => void;
@@ -189,22 +190,15 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   const [requirements, setRequirements] = useState("");
   const [consent, setConsent] = useState(true);
   const [formError, setFormError] = useState("");
-  const [isFallback, setIsFallback] = useState<boolean>(false);
   const [area, setArea] = useState<number>(1800);
-  const [bookName, setBookName] = useState("");
-  const [bookPhone, setBookPhone] = useState("");
-  const [bookLocation, setBookLocation] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  // --- Added for lead push endpoint ---
   const [submitting, setSubmitting] = useState(false);
+
   const turnstileRef = useRef(null);
   const widgetIdRef = useRef(null);
 
   useEffect(() => {
     if (pkg) {
-      setBookLocation("");
-      setErrorMsg("");
+      setFormError("");
     }
   }, [pkg]);
 
@@ -217,7 +211,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
         sitekey: TURNSTILE_SITE_KEY,
       });
     }
-    // Added: clean up when the modal closes so it re-renders next open
+    // Clean up when the modal closes so it re-renders next open
     if (!isOpen && widgetIdRef.current) {
       window.turnstile?.remove(widgetIdRef.current);
       widgetIdRef.current = null;
@@ -230,130 +224,341 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   const pricePerSqft = parseInt(pkg.price.replace(/[^\d]/g, ""));
   const estimatedCost = area * pricePerSqft;
 
+  const resetForm = () => {
+    setName("");
+    setPhone("");
+    setLocation("");
+    setConstructionType("");
+    setPlotSize("");
+    setFloors("");
+    setBudget("");
+    setRequirements("");
+    setConsent(true);
+    setFormError("");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
-      if (!name.trim()) {
-        setFormError("Please enter your name");
-        return;
-      }
-      if (!phone.trim() || phone.trim().length < 10) {
-        setFormError("Please enter a valid phone number");
-        return;
-      }
-      if (!location) {
-        setFormError("Please select your location");
-        return;
-      }
-      if (!constructionType) {
-        setFormError("Please select a construction type");
-        return;
-      }
-      if (!requirements.trim() || requirements.trim().length < 3) {
-        setFormError("Please explain your construction requirements (Min 3 chars)");
-        return;
-      }
-      if (!consent) {
-        setFormError("You must consent to receive communications to proceed");
-        return;
-      }
-
-      // --- Added: Turnstile check before hitting the API ---
-      const turnstileToken = window.turnstile?.getResponse(widgetIdRef.current);
-      if (!turnstileToken) {
-        setFormError("Please complete the verification check before submitting.");
-        return;
-      }
-
-      setFormError("");
-      setSubmitting(true);
-
-      // --- Added: push lead to backend, same as QuoteModal ---
-      try {
-        const res = await fetch(`${API_URL}/api/leads`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            phone,
-            location,
-            constructionType,
-            plotSize,
-            floors,
-            budget,
-            requirements,
-            turnstileToken,
-          }),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok || !data.success) {
-          setFormError(data.message || "Something went wrong. Please try again.");
-          window.turnstile?.reset(widgetIdRef.current);
-          setSubmitting(false);
-          return;
-        }
-
-        setIsModalOpen(false);
-
-        // Call success handler
-        onSuccessSubmit({
-          name,
-          phone: `+91 ${phone}`,
-          location: `${location} (${constructionType}, ${plotSize || "Standard"} plot, ${floors || "G"} Floors, Est Budget: ${budget || "Flexible"})`
-        });
-
-        // Reset Quote fields
-        setName("");
-        setPhone("");
-        setLocation("");
-        setConstructionType("");
-        setPlotSize("");
-        setFloors("");
-        setBudget("");
-        setRequirements("");
-        setConsent(true);
-      } catch (err) {
-        console.error("Lead submission error:", err);
-        setFormError("Network error. Please check your connection and try again.");
-        window.turnstile?.reset(widgetIdRef.current);
-      } finally {
-        setSubmitting(false);
-      }
-    };
-
-  const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!bookName.trim()) {
-      setErrorMsg("Please enter your name");
+
+    if (!name.trim()) {
+      setFormError("Please enter your name");
       return;
     }
-    if (!bookPhone.trim()) {
-      setErrorMsg("Please enter your phone number");
+    if (!phone.trim() || phone.trim().length < 10) {
+      setFormError("Please enter a valid phone number");
       return;
     }
-    if (bookPhone.trim().length < 10) {
-      setErrorMsg("Please enter a valid phone number");
+    if (!location) {
+      setFormError("Please select your location");
       return;
     }
-    if (!bookLocation) {
-      setErrorMsg("Please select a target construction city");
+    if (!constructionType) {
+      setFormError("Please select a construction type");
+      return;
+    }
+    if (!requirements.trim() || requirements.trim().length < 3) {
+      setFormError("Please explain your construction requirements (Min 3 chars)");
+      return;
+    }
+    if (!consent) {
+      setFormError("You must consent to receive communications to proceed");
       return;
     }
 
-    setErrorMsg("");
-    onClose();
-    onSuccessSubmit({
-      name: bookName,
-      phone: bookPhone,
-      location: `${bookLocation} (${pkg.name} Package, ${area} sqft, Est: ₹${estimatedCost.toLocaleString("en-IN")})`
-    });
+    // Turnstile check before hitting the API
+    const turnstileToken = window.turnstile?.getResponse(widgetIdRef.current);
+    if (!turnstileToken) {
+      setFormError("Please complete the verification check before submitting.");
+      return;
+    }
 
-    setBookName("");
-    setBookPhone("");
-    setBookLocation("");
+    setFormError("");
+    setSubmitting(true);
+
+    try {
+      const res = await fetch(`${API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          phone,
+          location,
+          constructionType,
+          plotSize,
+          floors,
+          budget,
+          requirements,
+          turnstileToken,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setFormError(data.message || "Something went wrong. Please try again.");
+        window.turnstile?.reset(widgetIdRef.current);
+        return;
+      }
+
+      // Close the booking form immediately on a successful submit
+      onClose();
+
+      // Hand off to the parent so it can show the SuccessModal
+      onSuccessSubmit({
+        name,
+        phone: `+91 ${phone}`,
+        location: `${location} (${constructionType}, ${plotSize || "Standard"} plot, ${floors || "G"} Floors, Est Budget: ${budget || "Flexible"})`
+      });
+
+      resetForm();
+    } catch (err) {
+      console.error("Lead submission error:", err);
+      setFormError("Network error. Please check your connection and try again.");
+      window.turnstile?.reset(widgetIdRef.current);
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in">
+      <div>
+        <div className="bg-white rounded-2xl overflow-hidden shadow-2xl relative max-w-4xl w-full flex flex-col md:flex-row max-h-[90vh] my-8">
+
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          {/* Left Side Branding */}
+          <div className="bg-gradient-to-b from-[#0a1f44] to-[#0d2d6b] md:w-[40%] flex flex-col items-center justify-center p-8 text-center shrink-0 text-white">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
+              alt="RVM Constructions"
+              className="w-32 h-32 object-cover rounded-lg mb-6 border-2 border-emerald-500/30"
+            />
+            <div className="space-y-1">
+              <p className="font-display font-black text-6xl text-emerald-400 tracking-tight leading-none">
+                5
+              </p>
+              <p className="text-xs text-emerald-400 font-light italic uppercase tracking-widest">
+                Years of
+              </p>
+              <h4 className="font-display font-bold text-lg text-emerald-400">
+                RVM Constructions™
+              </h4>
+              <p className="text-[10px] text-gray-400 font-light italic mt-4 tracking-wider">
+                Let's build your dream home!
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side Form */}
+          <div className="flex-1 overflow-y-auto p-6 sm:p-8 bg-white text-gray-700">
+            <h3 className="font-display font-bold text-xl sm:text-2xl text-[#0a1f44] tracking-tight leading-tight">
+              Stop Dreaming and Start Building.
+            </h3>
+            <p className="text-emerald-500 text-sm font-semibold mt-1 mb-6">
+              Contact Us Today!
+            </p>
+
+            {formError && (
+              <div className="p-3 mb-4 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 font-semibold">
+                {formError}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+
+              {/* Name */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-[#0a1f44] block">
+                  Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your full name"
+                  className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-800 focus:border-b-2 focus:border-emerald-600 outline-none bg-transparent transition-all"
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-[#0a1f44] block">
+                  Phone No <span className="text-red-500">*</span>
+                </label>
+                <div className="flex items-center border-b border-emerald-500">
+                  <span className="text-xs sm:text-sm text-gray-600 pr-2 pb-1 font-medium flex items-center gap-1">
+                    🇮🇳 +91
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+                    maxLength={10}
+                    placeholder="81234 56789"
+                    className="w-full py-2 text-xs sm:text-sm text-gray-800 outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+
+              {/* Grid Inputs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Location */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#0a1f44] block">
+                    Location <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                  >
+                    <option value="">--Select Location--</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                  </select>
+                </div>
+
+                {/* Construction Type */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#0a1f44] block">
+                    Construction Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={constructionType}
+                    onChange={(e) => setConstructionType(e.target.value)}
+                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                  >
+                    <option value="">--Select Construction Type--</option>
+                    <option value="New Construction">New Construction</option>
+                    <option value="Renovation">Renovation</option>
+                    <option value="Extension / Addition">Extension / Addition</option>
+                    <option value="Interior Design">Interior Design</option>
+                  </select>
+                </div>
+
+                {/* Plot Size */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#0a1f44] block">
+                    Plot Size <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={plotSize}
+                    onChange={(e) => setPlotSize(e.target.value)}
+                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                  >
+                    <option value="">--Select Plot Size--</option>
+                    <option value="Below 1000 sq ft">Below 1000 sq ft</option>
+                    <option value="1000 - 1500 sq ft">1000 - 1500 sq ft</option>
+                    <option value="1500 - 2000 sq ft">1500 - 2000 sq ft</option>
+                    <option value="2000 - 3000 sq ft">2000 - 3000 sq ft</option>
+                    <option value="Above 3000 sq ft">Above 3000 sq ft</option>
+                  </select>
+                </div>
+
+                {/* Floors */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#0a1f44] block">
+                    Number of Floors <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={floors}
+                    onChange={(e) => setFloors(e.target.value)}
+                    className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                  >
+                    <option value="">--Select Number of Floors--</option>
+                    <option value="Ground Floor (G)">Ground Floor (G)</option>
+                    <option value="G + 1">G + 1</option>
+                    <option value="G + 2">G + 2</option>
+                    <option value="G + 3">G + 3</option>
+                    <option value="G + 4 & above">G + 4 & above</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Approximate Budget */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-[#0a1f44] block">
+                  Approximate Budget <span className="text-red-500">*</span>
+                </label>
+                <select
+                  required
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-600 outline-none bg-transparent cursor-pointer"
+                >
+                  <option value="">--Select Approximate Budget--</option>
+                  <option value="Below ₹20 Lakhs">Below ₹20 Lakhs</option>
+                  <option value="₹20 - 40 Lakhs">₹20 - 40 Lakhs</option>
+                  <option value="₹40 - 60 Lakhs">₹40 - 60 Lakhs</option>
+                  <option value="₹60 - 80 Lakhs">₹60 - 80 Lakhs</option>
+                  <option value="₹80 Lakhs - 1 Crore">₹80 Lakhs - 1 Crore</option>
+                  <option value="Above 1 Crore">Above 1 Crore</option>
+                </select>
+              </div>
+
+              {/* Requirements */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-[#0a1f44] block">
+                  Construction Requirements <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  required
+                  value={requirements}
+                  onChange={(e) => setRequirements(e.target.value)}
+                  placeholder="Minimum 3 Characters detailing requirements..."
+                  rows={2}
+                  className="w-full border-b border-emerald-500 py-1 text-xs sm:text-sm text-gray-800 outline-none resize-none bg-transparent font-sans"
+                />
+              </div>
+
+              {/* Consent */}
+              <div className="flex gap-2.5 items-start pt-2">
+                <input
+                  type="checkbox"
+                  id="ws-consent-booking"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-0.5 shrink-0 accent-emerald-500 h-4 w-4 rounded cursor-pointer"
+                />
+                <label htmlFor="ws-consent-booking" className="text-[10px] sm:text-xs text-gray-500 leading-relaxed cursor-pointer select-none">
+                  I authorize RVM Constructions & its representatives to contact me with updates and notifications via Email/SMS/WhatsApp/Call. This will override DND/NDNC settings.
+                </label>
+              </div>
+
+              {/* Turnstile widget */}
+              <div ref={turnstileRef}></div>
+
+              {/* Submit button */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-3.5 rounded-lg text-sm font-bold tracking-wider cursor-pointer transition-all duration-300 shadow-md uppercase disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {submitting ? "Submitting..." : "Submit Request"}
+                </button>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto animate-fade-in">
