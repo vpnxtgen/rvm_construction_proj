@@ -205,19 +205,12 @@ export default function App() {
       />
 
       {/* Plan area calculator and consultation submit */}
-      {/*<BookingModal
+      <BookingModal
         isOpen={isPkgOpen}
         onClose={() => setIsPkgOpen(false)}
         pkg={selectedPkg}
         onSuccessSubmit={handleConsultationSuccess}
-      />*/}
-
-      <QuoteModal
-        isOpen={isPkgOpen}
-        onClose={() => setIsPkgOpen(false)}
-        onSuccessSubmit={handleConsultationSuccess}
       />
-
       {/* Material and layout brochure downloader */}
       <BrochureModal
         isOpen={isBrochureOpen}
