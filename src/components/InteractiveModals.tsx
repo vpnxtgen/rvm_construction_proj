@@ -181,6 +181,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
   // Quote form states
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
   const [constructionType, setConstructionType] = useState("");
   const [plotSize, setPlotSize] = useState("");
@@ -225,6 +226,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
 
   const resetForm = () => {
     setName("");
+    setEmail("");
     setPhone("");
     setLocation("");
     setConstructionType("");
@@ -241,6 +243,10 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
 
     if (!name.trim()) {
       setFormError("Please enter your name");
+      return;
+    }
+    if(!email){
+      setFormError("Please enter a Email ");
       return;
     }
     if (!phone.trim() || phone.trim().length < 10) {
@@ -281,6 +287,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
         body: JSON.stringify({
           name,
           phone,
+          email,
           location,
           constructionType,
           plotSize,
@@ -387,6 +394,21 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
                 />
               </div>
 
+              {/* Email */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-[#0a1f44] block">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Your full name"
+                  className="w-full border-b border-emerald-500 py-2 text-xs sm:text-sm text-gray-800 focus:border-b-2 focus:border-emerald-600 outline-none bg-transparent transition-all"
+                />
+              </div>
+
               {/* Phone */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-[#0a1f44] block">
@@ -402,7 +424,7 @@ export function BookingModal({ isOpen, onClose, pkg, onSuccessSubmit }: BookingM
                     value={phone}
                     onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
                     maxLength={10}
-                    placeholder="81234 56789"
+                    placeholder="81234 8989"
                     className="w-full py-2 text-xs sm:text-sm text-gray-800 outline-none bg-transparent"
                   />
                 </div>
