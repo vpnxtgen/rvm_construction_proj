@@ -12,7 +12,7 @@ import Packages from "./components/Packages";
 import Brands from "./components/Brands";
 import MediaAndTestimonials from "./components/MediaAndTestimonials";
 import Footer from "./components/Footer";
-import { SuccessModal, StepModal, BookingModal, BrochureModal, PortfolioModal} from "./components/InteractiveModals";
+import { SuccessModal, StepModal, BookingModal, BrochureModal, PortfolioModal, QuoteModal} from "./components/InteractiveModals";
 import { Package, RoadmapStep, PACKAGES } from "./data";
 import { MessageSquare, PhoneCall, CheckCircle } from "lucide-react";
 
@@ -205,10 +205,16 @@ export default function App() {
       />
 
       {/* Plan area calculator and consultation submit */}
-      <BookingModal
+      {/*<BookingModal
         isOpen={isPkgOpen}
         onClose={() => setIsPkgOpen(false)}
         pkg={selectedPkg}
+        onSuccessSubmit={handleConsultationSuccess}
+      />*/}
+
+      <QuoteModal
+        isOpen={isPkgOpen}
+        onClose={() => setIsPkgOpen(false)}
         onSuccessSubmit={handleConsultationSuccess}
       />
 
